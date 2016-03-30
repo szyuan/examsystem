@@ -3,7 +3,10 @@ html{
 }
 
 /*------------login-page-----------*/
-#login-form-wrap{
+div[data-page=login] .page-content{
+	background: gray;
+}
+#loginFormWrap{
 	position: absolute;
 	bottom: 0;
 }
@@ -11,11 +14,20 @@ div[data-page=login] .page-content .content{
 	/*position: relative;*/
 }
 #loginFormWrap{
+	width:100%;
+	box-sizing: border-box;
 	position: absolute;
 	bottom: 0;
+	padding:0 2rem;
 }
-div[data-page=login] .page-content .content-block input{
+#loginFormWrap input{
+	box-sizing: border-box;
 	width: 100%;
-	//margin:1rem 0;
-	//height:4rem;
+	display: block;
+	margin:2rem 0;
+	height:4rem;
+	border-radius: 0;
+	border:1px solid #ddd;
+	box-shadow: none;
+	-webkit-appearance: none;
 }
