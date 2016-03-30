@@ -1,8 +1,21 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html{
+	font-size: 10px;
 }
 
-a {
-  color: #00B7FF;
+/*------------login-page-----------*/
+#login-form-wrap{
+	position: absolute;
+	bottom: 0;
+}
+div[data-page=login] .page-content .content{
+	/*position: relative;*/
+}
+#loginFormWrap{
+	position: absolute;
+	bottom: 0;
+}
+div[data-page=login] .page-content .content-block input{
+	width: 100%;
+	//margin:1rem 0;
+	//height:4rem;
 }
