@@ -1,33 +1,199 @@
 html{
-	font-size: 10px;
+	font-size: 12px;
+}
+body{
+	font-size: 12px;
+	font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+	color:#607d8b;
 }
 
 /*------------login-page-----------*/
+#logoWrap{
+	margin: 5rem;
+	text-align: center;
+}
+#logo{
+	width: 6rem;
+	height: 6rem;
+	background: url(../images/logo.png) no-repeat;
+	background-size: cover;
+	display: inline-block;
+	vertical-align: middle;
+}
+#logoWrap h1{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 2rem;
+	color: #fff;
+	margin-left: 1.4rem;
+}
 div[data-page=login] .page-content{
-	background: gray;
+	background:#000 url(../images/login-bg.png) no-repeat;
+	background-size:100% 100%;
 }
 #loginFormWrap{
 	position: absolute;
 	bottom: 0;
+	text-align: center;
 }
 div[data-page=login] .page-content .content{
 	/*position: relative;*/
 }
-#loginFormWrap{
+#loginInputWrap{
 	width:100%;
 	box-sizing: border-box;
 	position: absolute;
-	bottom: 0;
-	padding:0 2rem;
+	bottom: 16rem;
+	padding:0 5rem;
 }
-#loginFormWrap input{
+#loginInputWrap input{
 	box-sizing: border-box;
 	width: 100%;
 	display: block;
-	margin:2rem 0;
-	height:4rem;
+	margin-bottom:0rem;
 	border-radius: 0;
 	border:1px solid #ddd;
 	box-shadow: none;
 	-webkit-appearance: none;
+	padding:0 1rem;
+	font-size: 1.2rem;
+	text-align: center;
+	height:4rem;
+	line-height: 4rem;
+}
+#loginForm p{
+	/*position: relative;*/
+	padding:0 5rem;
+	box-sizing: border-box;
+	position: absolute;
+	bottom:5rem;
+	width: 100%;
+	text-align: center;
+}
+#loginBtn{
+	height:5rem;
+	line-height: 5rem;
+	display:block;
+	width: auto;
+	/*margin-top: 2rem;*/
+	position: absolute;
+	bottom:5rem;
+	left: 5rem;
+	right:5rem;
+}
+/*--Shrink--*/
+#loginForm .loginBtn-shrink{
+	width: 5rem;
+	border-radius: 5rem;
+	min-width: 0;
+	padding: 0;
+	margin:0 auto;
+	left: 0;
+	right: 0;
+}
+.loginBtn-shrink #login-word{
+	display: none;
+}
+.loginBtn-shrink #login-loading{
+	width: 3rem;
+	height: 3rem;
+	background-image: url(../images/loading.png);
+	background-size: cover;
+	display: inline-block;
+	margin: 0;
+	vertical-align: middle;
+
+	-webkit-animation-name: btn-loading-spin;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear; 
+    -webkit-animation-iteration-count:infinite;
+}
+@-webkit-keyframes btn-loading-spin{
+    0% {}
+    50% {transform:rotate(180deg);}
+    100% {transform:rotate(360deg); }
+}
+/*--Spread--*/
+#loginForm .loginBtn-spread{
+    transition: 0.5s;
+    width: 140vh;
+	height:150vh;
+	left: -50vw;
+	bottom:-50vw;
+	border-radius: 200vh;
+}
+#loginForm .loginBtn-spread span{
+	display: none;
+}
+
+/*------------Main------------------*/
+.pink{
+	background: #fff;
+	color:#ff808a;
+}
+.pink-card{
+	background: #fff;
+	color:#ff808a;
+	border:1px solid #ddd;
+}
+
+.page-content{
+	background: #eee;
+}
+div[data-page=main] .page-content{
+	/*padding-top: 48px;*/
+}
+.page>.navbar{
+  background: #fff;
+  color:#000;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+.content-block{
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.icon-only{
+  background: pink;
+}
+.search-bar{
+	border:1px solid #ddd;
+	height: 3.2rem;
+	background: #fff;
+}
+.search-bar input{
+	width: 100%;
+	height: 3.2rem;
+	border:0;
+	border-left:1px solid #ddd;
+	padding:0 1rem;
+}
+.main-stat{
+	border:1px solid #ddd;
+	padding:0.5rem;
+	margin-top: 1rem;
+	background: #fff;
+}
+.main-stat .col-50:nth-child(1){
+	border-right:1px solid #ddd;
+}
+.main-stat span,.main-stat strong{
+	display: block;
+	text-align: center;
+	font-weight: normal;
+	font-size: 1.1rem;
+}
+h2{
+	font-weight: normal;
+	margin: 0;
+}
+.currentExamList{
+	padding: 0;
+	margin: 0;
+	border:1px solid #ddd;
+	min-height: 7rem;
+}
+.currentExamList .col-25{
+	border-right:1px solid #ddd;
+	min-height: 7rem;
 }
