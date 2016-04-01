@@ -6,7 +6,20 @@ body{
 	font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 	color:#607d8b;
 }
-
+@font-face {
+	font-family: 'iconfont';
+    src: 
+    url('../images/icons/iconfont.woff') format('woff'), 	/* chrome、firefox */
+    url('../images/icons/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../images/icons/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
 /*------------login-page-----------*/
 #logoWrap{
 	margin: 5rem;
@@ -74,12 +87,10 @@ div[data-page=login] .page-content .content{
 	height:5rem;
 	line-height: 5rem;
 	display:block;
-	width: auto;
-	/*margin-top: 2rem;*/
+	width:100% ;
 	position: absolute;
 	bottom:5rem;
-	left: 5rem;
-	right:5rem;
+	transition: 0.5s;
 }
 /*--Shrink--*/
 #loginForm .loginBtn-shrink{
@@ -97,7 +108,7 @@ div[data-page=login] .page-content .content{
 .loginBtn-shrink #login-loading{
 	width: 3rem;
 	height: 3rem;
-	background-image: url(../images/loading.png);
+	background-image: url(../images/icons/loading.png);
 	background-size: cover;
 	display: inline-block;
 	margin: 0;
@@ -127,50 +138,90 @@ div[data-page=login] .page-content .content{
 }
 
 /*------------Main------------------*/
-.pink{
-	background: #fff;
-	color:#ff808a;
-}
-.pink-card{
-	background: #fff;
-	color:#ff808a;
-	border:1px solid #ddd;
-}
 
 .page-content{
 	background: #eee;
 }
+.navbar{
+	height:4rem;
+	position: relative;
+	/*min-height: 0;*/
+}
+.navbar-inner {
+  justify-content: space-between;
+}
+.navbar-inner .right{
+  margin:0;
+}
+.navbar-inner .center{
+  	margin:auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	text-align: center;	
+	line-height: 4rem;
+}
+div[data-page=main] .navbar .ripple-wave {
+    background-color: pink;
+}    
 div[data-page=main] .page-content{
-	/*padding-top: 48px;*/
+	padding-top: 56px;
 }
 .page>.navbar{
   background: #fff;
   color:#000;
   border-bottom: 1px solid #ddd;
-  position: relative;
+  /*position: relative;*/
 }
 .content-block{
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 }
-.icon-only{
-  background: pink;
+div[data-page=main] .navbar .right i{
+	color:LightCoral;
+	font-size:2rem;
 }
+/*.icon-only{
+  background: pink;
+}*/
 .search-bar{
-	border:1px solid #ddd;
-	height: 3.2rem;
+	/*border:1px solid #ddd;*/
+	height: 4rem;
 	background: #fff;
+	box-shadow: 0 0 5px 0 #ddd;
 }
 .search-bar input{
 	width: 100%;
-	height: 3.2rem;
+	height: 4rem;
 	border:0;
-	border-left:1px solid #ddd;
-	padding:0 1rem;
+	/*border-left:1px solid #ddd;*/
+	/*padding:0 1rem;*/
+	border-radius: 0 0 0 0;
+	-webkit-appearance:none;
+	font-size:1.3rem;
+}
+.searchbar-btn {
+	margin: 0;
+	padding: 0;
+	min-width: 0;
+	height: 4rem;
+	/*background-image: url(../images/icons/search.png);*/
+	/*background-size:cover;*/
+}
+.searchbar-btn i{
+	background-image: url(../images/icons/search.png);
+	background-size:cover;
+	width: 3rem;
+	height: 3rem;
+	display: inline-block;
+	margin-top:0.5rem;
 }
 .main-stat{
-	border:1px solid #ddd;
-	padding:0.5rem;
+	/*border:1px solid #ddd;*/
+	box-shadow: 0 0 5px 0 #ddd;
+	padding:1rem;
 	margin-top: 1rem;
 	background: #fff;
 }
@@ -181,19 +232,98 @@ div[data-page=main] .page-content{
 	display: block;
 	text-align: center;
 	font-weight: normal;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 }
 h2{
 	font-weight: normal;
 	margin: 0;
 }
-.currentExamList{
+.examList{
 	padding: 0;
 	margin: 0;
-	border:1px solid #ddd;
+	background: #fff;
+}
+.examList li{
+	padding: 1rem 0;
+	margin: 0;
+	border-bottom:1px solid #ddd;
+	min-height: 7rem;
+	position: relative;
+	overflow: hidden;
+}
+.examList li .ripple-wave{
+	background-color:red; 
+}
+.examList li:nth-child(1){
+	border-top:1px solid #ddd;
+}
+.examList .col-25{
+	min-height: 7rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items:center;
+	color:LightCoral;
+}
+.examList .col-25 span{
+	font-size:1.2rem;
+	flex-grow:1;
+}
+.examList .col-25 strong{
+	font-weight: normal;
+	flex-grow:1;
+	line-height: 3rem;
+}
+.examList .col-25 strong i{
+	font-size: 3rem;
+}
+.examList .startSoon{
+	color:SkyBlue;
+}
+.examList .examing{
+	color:LightCoral;
+}
+/*.examList .gradePass{
+	color:LightCoral;
+}
+.examList .gradeFail{
+	color:SlateGray;
+}*/
+.examList .col-75{
+	/*border-left:1px solid #ddd;*/
 	min-height: 7rem;
 }
-.currentExamList .col-25{
-	border-right:1px solid #ddd;
-	min-height: 7rem;
+.examList .col-75 h3{
+	font-weight: normal;
+	color: LightCoral;
+	font-size: 1.4rem;
+	margin:0 0 1rem 0;
+}
+.examList .col-75 .teacherName{
+	margin-right:2rem;
+}
+.examList .col-75 p{
+	/*max-resolution: 0.1em;*/
+	margin:0.1rem;
+	font-size: 1.2rem;
+}
+.historyExamList .col-25 strong i{
+	display: inline-block;
+	width: 4rem;
+	height: 4rem;
+	line-height: 4rem;
+	background-size:cover;
+	font-size: 2.4rem;
+	text-align: center;
+	font-weight: bold;
+}
+.historyExamList li .scorePass i{
+	background-image: url(../images/icons/score-pass.png);
+}
+
+.historyExamList li .scoreFail {
+	color:SlateGray;
+}
+.historyExamList li .scoreFail i{
+	background-image: url(../images/icons/score-fail.png);
 }

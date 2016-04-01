@@ -10,7 +10,7 @@
     <!-- Color theme for statusbar -->
     <meta name="theme-color" content="#ff808a">
     <!-- Your app title -->
-    <title>My App</title>
+    <title>在线考试主页</title>
     <!-- Path to Framework7 Library CSS, Material Theme -->
     <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.material.min.css">
     <!-- Path to Framework7 color related styles, Material Theme -->
@@ -33,10 +33,11 @@
             <!-- Top Navbar. In Material theme it should be inside of the page-->
             <div class="navbar">
               <div class="navbar-inner">
+                  <div class="left"></div>
                   <div class="center">考试</div>
                   <div class="right">
                       <a href="#" class="link icon-only">
-                          <i class="icon icon-bars"></i>
+                          <i class="iconfont">&#xe60a;</i>
                       </a>
                   </div>
               </div>
@@ -50,7 +51,9 @@
                   <form class="search-bar">
                       <div class="row no-gutter">
                         <div class="col-15">
-                          <a href="#" class="searchbar-btn button"></a>
+                          <a href="#" class="searchbar-btn button">
+                            <i></i>
+                          </a>
                         </div>
                         <div class="col-85">
                           <input type="search" placeholder="Search">
@@ -71,61 +74,92 @@
               </div>
 
               <div class="content-block"><h2>当前考试</h2></div>
-              <ul class="currentExamList">
-                <li class="row no-gutter">
-                  <div class="col-25">
-                    <strong></strong>
+              <ul class="currentExamList examList">
+                <li class="row no-gutter ripple">
+                  <div class="col-25 startSoon">
+                    <strong><i class="iconfont">&#xe603;</i></strong>
                     <span>即将开始</span>
                   </div>
-                  <div class="col-75">2</div>
+                  <div class="col-75">
+                    <h3>移动Web开发期末测验</h3>
+                    <p>
+                      老师：<span class="teacherName">秦高德</span>
+                      考试时间：<span class="examMainTime">90分钟</span>
+                    </p>
+                    <p>
+                      创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
+                    </p>
+                  </div>
                 </li>
-              </ul>
-              <ul class="currentExamList">
                 <li class="row no-gutter">
                   <div class="col-25">
-                    <strong></strong>
-                    <span>即将开始</span>
+                    <strong><i class="iconfont">&#xe61c;</i></strong>
+                    <span>正在进行</span>
                   </div>
-                  <div class="col-75">2</div>
+                  <div class="col-75">
+                    <h3>算法设计与分析期末考试</h3>
+                    <p>
+                      老师：<span class="teacherName">秦高德</span>
+                      考试时间：<span class="examMainTime">90分钟</span>
+                    </p>
+                    <p>
+                      创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
+                    </p>
+                  </div>
                 </li>
               </ul>
-              <ul class="currentExamList">
+              
+              <div class="content-block"><h2>已完成考试</h2></div>
+              <ul class="historyExamList examList">
                 <li class="row no-gutter">
-                  <div class="col-25">
-                    <strong></strong>
-                    <span>即将开始</span>
+                  <div class="col-25 scorePass">
+                    <strong><i class="iconfont">82</i></strong>
+                    <span>合格</span>
                   </div>
-                  <div class="col-75">2</div>
+                  <div class="col-75">
+                    <h3>移动Web开发期末测验</h3>
+                    <p>
+                      老师：<span class="teacherName">秦高德</span>
+                      考试时间：<span class="examMainTime">90分钟</span>
+                    </p>
+                    <p>
+                      创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
+                    </p>
+                  </div>
                 </li>
-              </ul>
-              <ul class="currentExamList">
                 <li class="row no-gutter">
-                  <div class="col-25">
-                    <strong></strong>
-                    <span>即将开始</span>
+                  <div class="col-25 scoreFail">
+                    <strong><i class="iconfont">59</i></strong>
+                    <span>不合格</span>
                   </div>
-                  <div class="col-75">2</div>
+                  <div class="col-75">
+                    <h3>移动Web开发期末测验</h3>
+                    <p>
+                      老师：<span class="teacherName">秦高德</span>
+                      考试时间：<span class="examMainTime">90分钟</span>
+                    </p>
+                    <p>
+                      创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
+                    </p>
+                  </div>
                 </li>
-              </ul>
-              <ul class="currentExamList">
                 <li class="row no-gutter">
-                  <div class="col-25">
-                    <strong></strong>
-                    <span>即将开始</span>
+                  <div class="col-25 scorePass">
+                    <strong><i class="iconfont">98</i></strong>
+                    <span>合格</span>
                   </div>
-                  <div class="col-75">2</div>
+                  <div class="col-75">
+                    <h3>移动Web开发期末测验</h3>
+                    <p>
+                      老师：<span class="teacherName">秦高德</span>
+                      考试时间：<span class="examMainTime">90分钟</span>
+                    </p>
+                    <p>
+                      创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
+                    </p>
+                  </div>
                 </li>
               </ul>
-              <ul class="currentExamList">
-                <li class="row no-gutter">
-                  <div class="col-25">
-                    <strong></strong>
-                    <span>即将开始</span>
-                  </div>
-                  <div class="col-75">2</div>
-                </li>
-              </ul>
-
 
             </div>
 

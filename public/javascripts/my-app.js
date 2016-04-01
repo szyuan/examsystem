@@ -57,5 +57,5 @@ myApp.login.buttonSpread=function(){
 
 }
 myApp.login.buttonLoading(function(){
-    setTimeout(myApp.login.buttonSpread,1000);
+    setTimeout(myApp.login.buttonSpread,2000);
 });
