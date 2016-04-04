@@ -21,6 +21,19 @@
     <!-- <link rel="stylesheet" href="bower_components/Framework7/dist/css/my-app.css"> -->
   </head>
   <body class="theme-white color">
+    <div class="panel-overlay"></div>
+    <div class="panel panel-right panel-cover">
+        <div class="panel-head">
+          <div class="avatar"></div>
+          <h4 class="nickname">陈狗蛋</h4>
+        </div>
+        <ul class="panel-list">
+          <li><a href="#" class="button">个人信息</a></li>
+          <li><a href="#" class="button">设置</a></li>
+          <li><a href="#" class="button">关于</a></li>
+        </ul>
+        <a href="#" class="logout button">注销</a>
+    </div>
     <!-- Views -->
     <div class="views">
       <!-- Your main view, should have "view-main" class -->
@@ -36,7 +49,7 @@
                   <div class="left"></div>
                   <div class="center">考试</div>
                   <div class="right">
-                      <a href="#" class="link icon-only">
+                      <a href="#" class="button icon-only open-panel">
                           <i class="iconfont">&#xe60a;</i>
                       </a>
                   </div>
@@ -91,7 +104,7 @@
                     </p>
                   </div>
                 </li>
-                <li class="row no-gutter">
+                <li class="row no-gutter ripple">
                   <div class="col-25">
                     <strong><i class="iconfont">&#xe61c;</i></strong>
                     <span>正在进行</span>
@@ -111,7 +124,7 @@
               
               <div class="content-block"><h2>已完成考试</h2></div>
               <ul class="historyExamList examList">
-                <li class="row no-gutter">
+                <li class="row no-gutter ripple">
                   <div class="col-25 scorePass">
                     <strong><i class="iconfont">82</i></strong>
                     <span>合格</span>
@@ -126,8 +139,8 @@
                       创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
                     </p>
                   </div>
-                </li>
-                <li class="row no-gutter">
+                </li> 
+                <li class="row no-gutter ripple">
                   <div class="col-25 scoreFail">
                     <strong><i class="iconfont">59</i></strong>
                     <span>不合格</span>
@@ -143,7 +156,7 @@
                     </p>
                   </div>
                 </li>
-                <li class="row no-gutter">
+                <li class="row no-gutter ripple">
                   <div class="col-25 scorePass">
                     <strong><i class="iconfont">98</i></strong>
                     <span>合格</span>

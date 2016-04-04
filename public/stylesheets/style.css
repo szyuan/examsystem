@@ -5,6 +5,7 @@ body{
 	font-size: 12px;
 	font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 	color:#607d8b;
+	color:SlateGray;
 }
 @font-face {
 	font-family: 'iconfont';
@@ -41,7 +42,7 @@ body{
 	margin-left: 1.4rem;
 }
 div[data-page=login] .page-content{
-	background:#000 url(../images/login-bg.png) no-repeat;
+	background:#000 url(../images/login_bg.jpg) no-repeat;
 	background-size:100% 100%;
 }
 #loginFormWrap{
@@ -56,23 +57,26 @@ div[data-page=login] .page-content .content{
 	width:100%;
 	box-sizing: border-box;
 	position: absolute;
-	bottom: 16rem;
+	bottom: 10rem;
 	padding:0 5rem;
 }
 #loginInputWrap input{
 	box-sizing: border-box;
 	width: 100%;
 	display: block;
-	margin-bottom:0rem;
-	border-radius: 0;
-	border:1px solid #ddd;
-	box-shadow: none;
+	border-radius: 3px;
+	border:0px solid #000;
+	box-shadow: 0 1px 1px 0 #ccc;
 	-webkit-appearance: none;
 	padding:0 1rem;
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	text-align: center;
 	height:4rem;
 	line-height: 4rem;
+	opacity: 0.9;
+}
+#username{
+	margin-bottom:2.8rem;
 }
 #loginForm p{
 	/*position: relative;*/
@@ -89,8 +93,9 @@ div[data-page=login] .page-content .content{
 	display:block;
 	width:100% ;
 	position: absolute;
-	bottom:5rem;
+	bottom:2rem;
 	transition: 0.5s;
+	font-size: 1.4rem;
 }
 /*--Shrink--*/
 #loginForm .loginBtn-shrink{
@@ -140,7 +145,7 @@ div[data-page=login] .page-content .content{
 /*------------Main------------------*/
 
 .page-content{
-	background: #eee;
+	background: #f5f5f5;
 }
 .navbar{
 	height:4rem;
@@ -162,6 +167,8 @@ div[data-page=login] .page-content .content{
 	bottom: 0;
 	text-align: center;	
 	line-height: 4rem;
+	font-size: 1.3rem;
+	color:slateGray;
 }
 div[data-page=main] .navbar .ripple-wave {
     background-color: pink;
@@ -190,14 +197,14 @@ div[data-page=main] .navbar .right i{
 	/*border:1px solid #ddd;*/
 	height: 4rem;
 	background: #fff;
-	box-shadow: 0 0 5px 0 #ddd;
+	box-shadow: 0 1px 1px 0 #ddd;
+	border-radius: 4px;
+	overflow: hidden;
 }
 .search-bar input{
 	width: 100%;
 	height: 4rem;
 	border:0;
-	/*border-left:1px solid #ddd;*/
-	/*padding:0 1rem;*/
 	border-radius: 0 0 0 0;
 	-webkit-appearance:none;
 	font-size:1.3rem;
@@ -207,8 +214,6 @@ div[data-page=main] .navbar .right i{
 	padding: 0;
 	min-width: 0;
 	height: 4rem;
-	/*background-image: url(../images/icons/search.png);*/
-	/*background-size:cover;*/
 }
 .searchbar-btn i{
 	background-image: url(../images/icons/search.png);
@@ -219,8 +224,8 @@ div[data-page=main] .navbar .right i{
 	margin-top:0.5rem;
 }
 .main-stat{
-	/*border:1px solid #ddd;*/
-	box-shadow: 0 0 5px 0 #ddd;
+	box-shadow: 0 1px 1px 0 #ddd;
+	border-radius: 4px;
 	padding:1rem;
 	margin-top: 1rem;
 	background: #fff;
@@ -233,6 +238,9 @@ div[data-page=main] .navbar .right i{
 	text-align: center;
 	font-weight: normal;
 	font-size: 1.2rem;
+}
+.main-stat strong{
+	color:lightCoral;
 }
 h2{
 	font-weight: normal;
@@ -250,9 +258,13 @@ h2{
 	min-height: 7rem;
 	position: relative;
 	overflow: hidden;
+	-webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
 }
 .examList li .ripple-wave{
-	background-color:red; 
+	/*background-color:red; */
 }
 .examList li:nth-child(1){
 	border-top:1px solid #ddd;
@@ -283,14 +295,7 @@ h2{
 .examList .examing{
 	color:LightCoral;
 }
-/*.examList .gradePass{
-	color:LightCoral;
-}
-.examList .gradeFail{
-	color:SlateGray;
-}*/
 .examList .col-75{
-	/*border-left:1px solid #ddd;*/
 	min-height: 7rem;
 }
 .examList .col-75 h3{
@@ -326,4 +331,50 @@ h2{
 }
 .historyExamList li .scoreFail i{
 	background-image: url(../images/icons/score-fail.png);
+}
+/*--panel--*/
+.panel-head{
+	height:11rem;
+	padding-top:1rem;
+	background-color:#f5f5f5;
+	box-shadow: 0px -2px 2px 0 #f0f0f0 inset;
+}
+.avatar{
+	width: 7.5rem;
+	height: 7.5rem;
+	background-image:url(../images/avatar.jpeg);
+	background-size:cover;
+	border-radius: 8rem;
+	margin:0 auto;
+}
+.panel-head .nickname{
+	margin: 0.7rem auto;
+	width:auto;
+	text-align: center;
+	font-weight: normal;
+	font-size: 1.3rem;
+}
+.panel-list{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.panel-list li{
+	height: 2rem;
+	line-height: 3rem;
+	padding:1rem;
+	font-size: 1.2rem;
+}
+.panel-list li a{
+	color:inherit;
+}
+.panel .logout{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 4rem;
+	background-color: slateGray;
+	color:white;
+	line-height: 4rem;
+	border-radius: 0;
 }
