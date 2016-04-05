@@ -96,6 +96,9 @@ div[data-page=login] .page-content .content{
 	bottom:2rem;
 	transition: 0.5s;
 	font-size: 1.4rem;
+	background: MediumTurquoise;
+	text-align: center;
+	color:white;
 }
 /*--Shrink--*/
 #loginForm .loginBtn-shrink{
@@ -110,7 +113,7 @@ div[data-page=login] .page-content .content{
 .loginBtn-shrink #login-word{
 	display: none;
 }
-.loginBtn-shrink #login-loading{
+#login-loading{
 	width: 3rem;
 	height: 3rem;
 	background-image: url(../images/icons/loading.png);
@@ -118,7 +121,10 @@ div[data-page=login] .page-content .content{
 	display: inline-block;
 	margin: 0;
 	vertical-align: middle;
-
+    display:none;
+}
+.loginBtn-shrink #login-loading{
+	display: inline-block;
 	-webkit-animation-name: btn-loading-spin;
     -webkit-animation-duration: 1s;
     -webkit-animation-timing-function: linear; 
@@ -155,14 +161,22 @@ div[data-page=login] .page-content .content{
 .navbar-inner {
   justify-content: space-between;
 }
-.navbar-inner .right{
-  margin:0;
+.navbar-inner .right,.navbar-inner .left{
+  	margin:0;
+}
+.navbar-inner .right .icon-only i,.navbar-inner .left .icon-only i{
+  	padding: 1rem;
+	color:LightCoral;
+	font-size:2rem;
+}
+.navbar-inner .icon-only .small{
+	font-size:1.5rem !important;
 }
 .navbar-inner .center{
   	margin:auto;
 	position: absolute;
-	left: 0;
-	right: 0;
+	left: 5rem;
+	right: 5rem;
 	top: 0;
 	bottom: 0;
 	text-align: center;	
@@ -170,11 +184,14 @@ div[data-page=login] .page-content .content{
 	font-size: 1.3rem;
 	color:slateGray;
 }
-div[data-page=main] .navbar .ripple-wave {
+.navbar .ripple-wave {
     background-color: pink;
 }    
-div[data-page=main] .page-content{
-	padding-top: 56px;
+.navbar .ripple:before{
+	background-image: radial-gradient(circle at center,rgba(200, 200, 200, 1) 66%,rgba(23, 26, 232, 0) 66%);
+}
+div[data-page] .page-content{
+	padding-top: 4rem;
 }
 .page>.navbar{
   background: #fff;
@@ -183,23 +200,22 @@ div[data-page=main] .page-content{
   /*position: relative;*/
 }
 .content-block{
-	margin-top: 1rem;
+	margin-top: 0rem;
 	margin-bottom: 1rem;
 }
-div[data-page=main] .navbar .right i{
-	color:LightCoral;
-	font-size:2rem;
-}
-/*.icon-only{
-  background: pink;
+/*div[data-page=main] .navbar .right i{
 }*/
-.search-bar{
-	/*border:1px solid #ddd;*/
-	height: 4rem;
+.card{
+	/*min-height: 4rem;*/
 	background: #fff;
 	box-shadow: 0 1px 1px 0 #ddd;
 	border-radius: 4px;
 	overflow: hidden;
+	margin: 0;
+	margin-top: 1rem;
+}
+.search-bar{
+	height: 4rem;
 }
 .search-bar input{
 	width: 100%;
@@ -224,14 +240,10 @@ div[data-page=main] .navbar .right i{
 	margin-top:0.5rem;
 }
 .main-stat{
-	box-shadow: 0 1px 1px 0 #ddd;
-	border-radius: 4px;
 	padding:1rem;
-	margin-top: 1rem;
-	background: #fff;
 }
 .main-stat .col-50:nth-child(1){
-	border-right:1px solid #ddd;
+	border-right:1px solid #eee;
 }
 .main-stat span,.main-stat strong{
 	display: block;
@@ -246,16 +258,15 @@ h2{
 	font-weight: normal;
 	margin: 0;
 }
-.examList{
+.list{
 	padding: 0;
 	margin: 0;
 	background: #fff;
 }
-.examList li{
+.list li{
 	padding: 1rem 0;
 	margin: 0;
-	border-bottom:1px solid #ddd;
-	min-height: 7rem;
+	border-bottom:1px solid #eee;
 	position: relative;
 	overflow: hidden;
 	-webkit-transition-duration: .3s;
@@ -263,11 +274,14 @@ h2{
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
 }
+.examList li{
+	min-height: 7rem;
+}
 .examList li .ripple-wave{
 	/*background-color:red; */
 }
-.examList li:nth-child(1){
-	border-top:1px solid #ddd;
+.list li:nth-child(1){
+	border-top:1px solid #eee;
 }
 .examList .col-25{
 	min-height: 7rem;
@@ -312,6 +326,7 @@ h2{
 	margin:0.1rem;
 	font-size: 1.2rem;
 }
+
 .historyExamList .col-25 strong i{
 	display: inline-block;
 	width: 4rem;
@@ -321,6 +336,9 @@ h2{
 	font-size: 2.4rem;
 	text-align: center;
 	font-weight: bold;
+}
+.historyExam{
+	margin-top: 1rem;
 }
 .historyExamList li .scorePass i{
 	background-image: url(../images/icons/score-pass.png);
@@ -377,4 +395,106 @@ h2{
 	color:white;
 	line-height: 4rem;
 	border-radius: 0;
+}
+/*--------------Exam-----------------*/
+div[data-page=exam]{
+	font-size: 1.3rem;
+}
+div[data-page=exam] .page-content{
+	padding-bottom:3.5rem;
+}
+.exam-title{
+	height: 3rem;
+	padding: 0 1rem;
+	font-size: 1.3rem;
+}
+.exam-title h2{
+	margin: 0;
+	line-height: 3rem;
+	font-size: inherit;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.exam-title p{
+	margin: 0;
+	font-size: inherit;
+	line-height: 3rem;
+	text-align: right;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color:lightcoral;
+}
+.question{
+	min-height: 5rem;
+	padding:1rem;
+}
+.question-type{
+	color:lightcoral;
+	margin: 0;
+	padding: 0;
+	font-size: inherit;
+	font-weight: normal;
+	margin-top:-0.5rem;
+}
+.question-type span{
+	border-bottom: 1px solid #eee;
+	padding:0 5rem 0.3rem 0rem;
+}
+.question-content{
+	font-size: 1.3rem;
+}
+.question-content p{
+	margin:1rem 0;
+	text-indent:2rem;
+	font-size: inherit;
+}
+.question .code{
+  font-size: 1.2rem;
+}
+.question .code pre{
+	margin:0;
+}
+.answerList{
+	background: #fff;
+	margin-top:1rem;
+}
+.answerList .optionCode{
+	margin-left:0.5rem;
+	color:lightcoral;
+}
+.answerList .icon-form-radio,.answerList .icon-form-checkbox{
+	border-color: lightcoral !important;
+}
+.answerList i.icon-form-radio:after,.answerList i.icon-form-checkbox:after{
+	background-color: lightcoral !important;
+}
+.answerList .label-radio .item-title{
+	white-space: pre-wrap;
+}
+.answerList .label-radio .item-title code{
+	background: transparent;
+}
+/*--turning--*/
+.turning{
+	height: 5rem;
+	border-top:1px solid #eee;
+}
+.turning .toolbar-inner .link{
+	flex-grow:1;
+	color:lightcoral;
+}
+.turning .toolbar-inner .link:nth-child(1){
+	border-right:1px solid #eee;
+}
+.turning .toolbar-inner .link:before{
+	background-image: radial-gradient(circle at center,rgba(200, 200, 200, 0.2) 66%,rgba(23, 26, 232, 0) 66%);
+}
+.turning .toolbar-inner .link .ripple-wave{
+	background-color: skyblue;
+}
+.turning{
+	background: #fff;
 }

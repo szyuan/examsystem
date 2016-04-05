@@ -23,7 +23,15 @@ $$(document).on('pageInit', '.page[data-page="login"]', function (e) {
         setTimeout(myApp.login.buttonSpread,1000);
     });
 
-})    
+});  
+$$(document).on('pageInit', '.page[data-page="exam"],.page[data-page="exam2"]', function (e) {
+    $$('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+
+    codeStyle();
+
+}); 
 
 
 
@@ -49,8 +57,8 @@ myApp.login.buttonSpread=function(){
 
     setTimeout(function(){
        mainView.router.load({
-        url:'main.html',
-        reload:true
+        url:'main.html'
+        // ,reload:true
        });
         // btn.removeClass('loginBtn-shrink').removeClass('loginBtn-spread');
     },500);
@@ -59,3 +67,21 @@ myApp.login.buttonSpread=function(){
 myApp.login.buttonLoading(function(){
     setTimeout(myApp.login.buttonSpread,2000);
 });
+
+/*----Exam----*/
+function codeStyle(){
+    myApp.styleToggle=$$(".code-style-toggle");
+    myApp.styleToggle.styleArray=["monokai-sublime","github-gist","dracula","gruvbox-light","zenburn","tomorrow"];
+    myApp.styleToggle.styleIndex=0;
+
+    myApp.styleToggle.codeStyleChange=function(){
+        var styleIndex=myApp.styleToggle.styleIndex=(myApp.styleToggle.styleIndex>=myApp.styleToggle.styleArray.length)?0:myApp.styleToggle.styleIndex;
+        $$("#code-style").prop("href","stylesheets/highlight/"+myApp.styleToggle.styleArray[styleIndex]+".css");
+        myApp.styleToggle.styleIndex++;
+    }
+    myApp.styleToggle.click(function(){
+        // alert();
+        myApp.styleToggle.codeStyleChange();
+    });
+}
+codeStyle();
