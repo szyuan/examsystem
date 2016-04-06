@@ -1,2 +1,5 @@
 node_modules/
 bower_components/
+*.zip
+*.rar
+*.7z
