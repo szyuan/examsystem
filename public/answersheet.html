@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar -->
+    <meta name="theme-color" content="#ff808a">
+    <!-- Your app title -->
+    <title>考试进行中</title>
+    <!-- Path to Framework7 Library CSS, Material Theme -->
+    <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.material.min.css">
+    <link rel="stylesheet" href="stylesheets/colors.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+  </head>
+  <body class="theme-white color">
+    <div class="views">
+      <div class="view view-main">
+        <div class="pages">
+        <!-- --------------------- -->
+          <div data-page="answersheet" class="page">
+ 
+            <div class="navbar">
+              <div class="navbar-inner">
+                  <div class="left">
+                    <a href="#" class="icon-only open-panel link">
+                          <i class="iconfont small"></i>
+                      </a>
+                  </div>
+                  <div class="center countdown">答题卡</div>
+                  <div class="right">
+                      <a href="#" class="icon-only open-panel countdown">
+                          <i class="iconfont">1:18:52</i>
+                      </a>
+                  </div>
+              </div>
+          </div>  
+
+            <div class="page-content">
+
+              <div class="content-block">
+
+                  <div class="sheet-title card">
+                    <h2>移动Web开发期末测验</h2>
+                  </div>
+
+                  <div class="question row card">
+                    <div class="question-content">
+                      
+                    </div>
+                  </div>
+              
+              <div class="list-block answerList">
+                <ul>
+                  <!-- Single radio input -->
+                  <li>
+                    <label class="label-radio item-content">
+                      <!-- Checked by default -->
+                      <input type="radio" name="my-radio" value="Books" checked="checked">
+                      <div class="item-media">
+                        <i class="icon icon-form-radio"></i>
+                        <span class="optionCode">A</span>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title">显示隐藏</div>
+                      </div>
+                    </label>
+                  </li>
+                  <!-- Another radio input -->
+                  <li>
+                    <label class="label-radio item-content">
+                      <input type="radio" name="my-radio" value="Movies">
+                      <div class="item-media">
+                        <i class="icon icon-form-radio"></i>
+                        <span class="optionCode">B</span>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title">给元素绑定样式</div>
+                      </div>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="label-radio item-content">
+                      <input type="radio" name="my-radio" value="Movies">
+                      <div class="item-media">
+                        <i class="icon icon-form-radio"></i>
+                        <span class="optionCode">C</span>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title"><code>var myDiv = document.getElementById ("statusCode");
+                        myDiv.innerHTML = req.statusCode;</code></div>
+                      </div>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="label-radio item-content">
+                      <input type="radio" name="my-radio" value="Movies">
+                      <div class="item-media">
+                        <i class="icon icon-form-radio"></i>
+                        <span class="optionCode">D</span>
+                      </div>
+                      <div class="item-inner">
+                        <div class="item-title">Movies</div>
+                      </div>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <!-- /radio -->
+
+            </div>
+            <div class="toolbar turning">
+              <div class="toolbar-inner">
+                  <a href="exam2.html" class="link"><i class="iconfont">&#xe639;</i></a>
+                  <a href="exam2.html" class="link"><i class="iconfont">&#xe636;</i></a>
+              </div>
+            </div>
+
+          </div>
+          <!-- ------------------- -->
+        </div>
+      </div>
+
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="bower_components/Framework7/dist/js/framework7.min.js"></script>
+    <script src="javascripts/my-app.js"></script>
+
+  </body>
+</html> 

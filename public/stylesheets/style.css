@@ -498,3 +498,14 @@ div[data-page=exam] .page-content{
 .turning{
 	background: #fff;
 }
+/*-----------AnswerSheet-----------*/
+.navbar .right .countdown i{
+	font-size: 1.3rem;
+	font-weight: normal;
+}
+.sheet-title h2{
+	text-align: center;
+	font-size: 1.3rem;
+	padding:0.5rem;	
+	color:lightcoral;
+}
