@@ -3,4 +3,4 @@ bower_components/
 *.zip
 *.rar
 *.7z
-Gruntfile.js
+#Gruntfile.js
