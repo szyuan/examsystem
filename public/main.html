@@ -16,24 +16,13 @@
     <!-- Path to Framework7 color related styles, Material Theme -->
     <link rel="stylesheet" href="stylesheets/colors.css">
     <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" id="code-style" href="stylesheets/highlight/tomorrow.css">
+    <script src="javascripts/highlight.pack.js"></script>
     <!-- <link rel="stylesheet" href="stylesheets/font-awesome.min.css"> -->
     <!-- Path to your custom app styles-->
     <!-- <link rel="stylesheet" href="bower_components/Framework7/dist/css/my-app.css"> -->
   </head>
   <body class="theme-white color">
-    <div class="panel-overlay"></div>
-    <div class="panel panel-right panel-cover">
-        <div class="panel-head">
-          <div class="avatar"></div>
-          <h4 class="nickname">陈狗蛋</h4>
-        </div>
-        <ul class="panel-list">
-          <li><a href="#" class="button">个人信息</a></li>
-          <li><a href="#" class="button">设置</a></li>
-          <li><a href="#" class="button">关于</a></li>
-        </ul>
-        <a href="#" class="logout button">注销</a>
-    </div>
     <!-- Views -->
     <div class="views">
       <!-- Your main view, should have "view-main" class -->
@@ -42,14 +31,28 @@
         <div class="pages">
         <!-- --------------------- -->
           <div data-page="main" class="page">
- 
+            
+            <div class="panel-overlay"></div>
+            <div class="panel panel-right panel-cover">
+                <div class="panel-head">
+                  <div class="avatar"></div>
+                  <h4 class="nickname">陈狗蛋</h4>
+                </div>
+                <ul class="panel-list">
+                  <li><a href="#" class="button">个人信息</a></li>
+                  <li><a href="#" class="button">设置</a></li>
+                  <li><a href="#" class="button">关于</a></li>
+                </ul>
+                <a href="index.html" class="logout button close-panel link">注销</a>
+            </div>
+
             <!-- Top Navbar. In Material theme it should be inside of the page-->
             <div class="navbar">
               <div class="navbar-inner">
                   <div class="left"></div>
                   <div class="center">考试</div>
                   <div class="right">
-                      <a href="#" class="icon-only open-panel link">
+                      <a href="#" class="icon-only open-panel ripple">
                           <i class="iconfont">&#xe60a;</i>
                       </a>
                   </div>
@@ -89,36 +92,40 @@
               <div class="content-block"><h2>当前考试</h2></div>
               <ul class="currentExamList examList list">
                 <li class="row no-gutter ripple">
-                  <div class="col-25 startSoon">
-                    <strong><i class="iconfont">&#xe603;</i></strong>
-                    <span>即将开始</span>
-                  </div>
-                  <div class="col-75">
-                    <h3>移动Web开发期末测验</h3>
-                    <p>
-                      老师：<span class="teacherName">秦高德</span>
-                      考试时间：<span class="examMainTime">90分钟</span>
-                    </p>
-                    <p>
-                      创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
-                    </p>
-                  </div>
+                  <a href="exam.html" class="link row">
+                    <div class="col-25 startSoon">
+                      <strong><i class="iconfont">&#xe603;</i></strong>
+                      <span>即将开始</span>
+                    </div>
+                    <div class="col-75">
+                      <h3>移动Web开发期末测验</h3>
+                      <p>
+                        老师：<span class="teacherName">秦高德</span>
+                        考试时间：<span class="examMainTime">90分钟</span>
+                      </p>
+                      <p>
+                        创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
+                      </p>
+                    </div>
+                  </a>
                 </li>
                 <li class="row no-gutter ripple">
-                  <div class="col-25">
-                    <strong><i class="iconfont">&#xe61c;</i></strong>
-                    <span>正在进行</span>
-                  </div>
-                  <div class="col-75">
-                    <h3>算法设计与分析期末考试</h3>
-                    <p>
-                      老师：<span class="teacherName">秦高德</span>
-                      考试时间：<span class="examMainTime">90分钟</span>
-                    </p>
-                    <p>
-                      创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
-                    </p>
-                  </div>
+                  <a href="exam.html" class="link row">
+                    <div class="col-25">
+                      <strong><i class="iconfont">&#xe61c;</i></strong>
+                      <span>正在进行</span>
+                    </div>
+                    <div class="col-75">
+                      <h3>算法设计与分析期末考试</h3>
+                      <p>
+                        老师：<span class="teacherName">秦高德</span>
+                        考试时间：<span class="examMainTime">90分钟</span>
+                      </p>
+                      <p>
+                        创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
+                      </p>
+                    </div>
+                  </a>  
                 </li>
               </ul>
               

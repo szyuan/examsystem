@@ -15,8 +15,19 @@ var mainView = myApp.addView('.view-main', {
     // dynamicNavbar: true
 });
 
-
-
+//让所有class为link的a标签，在点击跳转页面时弹出loading
+$$(document).on('pageInit','.page[data-page]',function(e){
+    $$('a.link').on('click', function () {
+        var a=$$('.view').attr('data-page');
+        myApp.showPreloader();
+        setInterval(function(){
+            if($$('.view').attr('data-page')!=a){
+              myApp.hidePreloader();
+            }
+        },100);
+    });
+    // alert();
+});
 $$(document).on('pageInit', '.page[data-page="login"]', function (e) {
     
     myApp.login.buttonLoading(function(){
@@ -25,6 +36,7 @@ $$(document).on('pageInit', '.page[data-page="login"]', function (e) {
 
 });  
 $$(document).on('pageInit', '.page[data-page="exam"],.page[data-page="exam2"]', function (e) {
+    hljs.initHighlightingOnLoad();
     $$('pre code').each(function(i, block) {
         hljs.highlightBlock(block);
     });

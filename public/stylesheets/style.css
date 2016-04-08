@@ -277,10 +277,16 @@ h2{
 .examList li{
 	min-height: 7rem;
 }
+.examList li a{
+	margin: 0;
+	padding: 0;
+	color:inherit;
+	width:100%;
+}
 .examList li .ripple-wave{
 	/*background-color:red; */
 }
-.list li:nth-child(1){
+ul.list li:nth-child(1){
 	border-top:1px solid #eee;
 }
 .examList .col-25{
@@ -486,27 +492,122 @@ div[data-page=exam] .page-content{
 	flex-grow:1;
 	color:lightcoral;
 }
-.turning .toolbar-inner .link:nth-child(1){
+div[data-page=exam] .turning .toolbar-inner .link:nth-child(1){
 	border-right:1px solid #eee;
 }
 .turning .toolbar-inner .link:before{
 	background-image: radial-gradient(circle at center,rgba(200, 200, 200, 0.2) 66%,rgba(23, 26, 232, 0) 66%);
 }
-.turning .toolbar-inner .link .ripple-wave{
-	background-color: skyblue;
+div[data-page=exam] .turning .toolbar-inner .link .ripple-wave{
+	background-color: rgba(135,206,255,0.5);
 }
 .turning{
 	background: #fff;
 }
 /*-----------AnswerSheet-----------*/
+div[data-page=answersheet] .page-content{
+	padding-bottom:7rem;
+}
 .navbar .right .countdown i{
 	font-size: 1.3rem;
 	font-weight: normal;
 }
 .sheet-title h2{
 	text-align: center;
-	font-size: 1.3rem;
+	font-size: 1.4rem;
 	padding:0.5rem;	
 	color:lightcoral;
-	
+}
+.exam-intro{
+	min-height: 5rem;
+}
+.exam-intro-content ul{
+	list-style:none;
+	padding: 0.5rem;
+	margin: 0;
+}
+.exam-intro-content ul li{
+	padding:0.2rem;
+	font-size: 1.2rem;
+	text-align: center;
+}
+.exam-progressbar{
+	height: 1.5rem;
+	line-height: 1.5rem;
+	background: skyblue;
+	position: relative;
+}
+.exam-progressbar .current-progress{
+	height: inherit;
+	background: lightcoral;
+	width:60%;
+}
+.exam-progressbar .exam-progress{
+	position: absolute;
+	height: inherit;
+	line-height: inherit;
+	top: 0;
+	right: 1rem;
+	width: 100%;
+	text-align: right;
+	color:white;
+}
+.qid-list{
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 1rem 0;
+}
+.qid-list .qid-item{
+	width: 20%;
+	height: 5rem;
+	/*border:1px solid #eee;*/
+	box-sizing: border-box;
+	text-align: center;
+	border:0;
+}
+.qid-list .qid-item .qid{
+	display: inline-block;
+	width: 3rem;
+	height: 3rem;
+	line-height: 3rem;
+	border-radius: 10%;
+	border:0.1rem solid skyblue;
+	color:skyblue;
+	text-align: center;
+	vertical-align: middle;
+	font-size:1.2rem;
+	font-weight: normal;
+	position: relative;
+	opacity: 1;
+	transition: 0.3s;
+	overflow: hidden;
+}
+.qid-list .qid-item .qid.qid-answered .ripple-wave{
+	background: rgba(255,255,255,0.5);
+	z-index: 1;
+}
+.qid-list .qid-item .qid .ripple-wave{
+	background: rgba(135,206,255,0.3);
+}
+.qid-list .qid-item .qid.active-state{
+	opacity: 0.8
+}
+.qid-list .qid-item .qid.qid-answered{
+	background: lightcoral;
+	border-color: lightcoral;
+	color:white;
+}
+.qid-list .qid-item .qid.qid-active{
+	border-color: lightcoral;
+	color:lightcoral;
+}
+.handin{
+	background-color: lightcoral;
+}
+.handin .handin-btn{
+	color:white !important;
+}
+.handin-btn .ripple-wave{
+	z-index: 1;
 }
