@@ -58,6 +58,14 @@ myApp.login.buttonLoading=function(cb){
     var btn=$$('#loginBtn');
     btn.click(function(event) {
         btn.addClass('loginBtn-shrink');
+        //请求node，尝试登录
+        $$.get(
+            "/func/login",
+            {userName:12880233  ,password:12880228},
+            function(data,a){
+                console.log(a);
+            }
+        );
 
         cb&&cb();
     });
@@ -67,14 +75,11 @@ myApp.login.buttonSpread=function(){
     var pos=btn.offset();
     btn.addClass('loginBtn-spread');
 
-    setTimeout(function(){
-       mainView.router.load({
-        url:'main.html'
-        // ,reload:true
-       });
-        // btn.removeClass('loginBtn-shrink').removeClass('loginBtn-spread');
-    },500);
-
+    // setTimeout(function(){
+    //    mainView.router.load({
+    //     url:'app/main'
+    //    });
+    // },500);
 }
 myApp.login.buttonLoading(function(){
     setTimeout(myApp.login.buttonSpread,2000);
