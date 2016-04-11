@@ -24,13 +24,25 @@ router.get('/func/login', function(req, res, next) {
 	};
 	console.log('@login:open connention');
 	var reqGet=http.request(reqOption,function(hRes){
-		console.log('init connention--');
-		console.log('hRes.statusCode:'+hRes.statusCode);
-		hRes.on('data',function(d){
-			res.send(d);
-			console.log('@login:got response');
-			process.stdout.write(d);
-		});
+		var loginCode=hRes.statusCode;
+		console.log('@login init connention--');
+		console.log('@login hRes.statusCode:'+loginCode);
+		if(loginCode==200){
+			hRes.on('data',function(d){
+				console.log('@login:got response');
+				process.stdout.write(d);
+				if(d=='no match'){
+					res.statusCode = 401;
+					res.send(d);
+				}else{
+					res.setHeader("Content-Type", "application/json; charset=utf-8");
+					res.send(d);
+				}
+			});
+		}else{
+			res.statusCode = loginCode;
+			res.end();
+		}	
 	});
 	reqGet.end();
 	reqGet.on('error',function(e){

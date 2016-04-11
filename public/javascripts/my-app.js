@@ -55,35 +55,63 @@ $$(document).on('pageInit', '.page[data-page="exam"],.page[data-page="exam2"]', 
 /*---Login---*/
 myApp.login=myApp.login||{};
 myApp.login.buttonLoading=function(cb){
+
     var btn=$$('#loginBtn');
     btn.click(function(event) {
-        btn.addClass('loginBtn-shrink');
-        //请求node，尝试登录
-        $$.get(
-            "/func/login",
-            {userName:12880233  ,password:12880228},
-            function(data,a){
-                console.log(a);
+        loginValidate(function(username,password,err){
+            if(err){
+                alert(err);
+            }else{
+               btn.addClass('loginBtn-shrink');
+                $$.ajax({
+                    url:"/func/login",
+                    data:{userName:username,password:password},
+                    success:loginSuccess,
+                    error:loginFail
+                }); 
             }
-        );
+        }); 
 
         cb&&cb();
     });
+    function loginValidate(fn){
+        var un=$$('#username').val().trim();
+        var pw=$$('#password').val().trim();
+        var p=/^[0-9a-zA-Z]*$/g;
+
+        if(!(un&&pw)){
+           fn(null,null,'账号与密码不能为空');
+        }else if(!(p.test(un))){
+            fn(null,null,"账号只能是数字字母组合");
+        }else{
+            fn(pw,un,null);
+        }
+    }
+    function loginSuccess(data){
+        console.log('#Login:success');
+        // console.log(a);
+        setTimeout(function(){
+            myApp.login.buttonSpread();
+            setTimeout(function(){
+                mainView.router.load({
+                    url:'app/main'
+                });
+            },500);
+        },1000);
+    }
+    function loginFail(e){
+        console.log('#Login:fail,message:'+e.statusText);
+    }
 }
 myApp.login.buttonSpread=function(){
     var btn=$$('#loginBtn');
     var pos=btn.offset();
     btn.addClass('loginBtn-spread');
-
-    // setTimeout(function(){
-    //    mainView.router.load({
-    //     url:'app/main'
-    //    });
-    // },500);
 }
-myApp.login.buttonLoading(function(){
-    setTimeout(myApp.login.buttonSpread,2000);
-});
+myApp.login.buttonLoading();
+// myApp.login.buttonLoading(function(){
+    // setTimeout(myApp.login.buttonSpread,2000);
+// });
 
 /*----Exam----*/
 function codeStyle(){
