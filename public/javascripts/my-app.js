@@ -3,7 +3,8 @@ var myApp = new Framework7({
     // pushState: true,
     // swipePanel: 'left',
     // fastClicks:true,
-    material:true
+    material:true,
+    modalTitle:"在线考试系统"
 });
 
 // Export selectors engine
@@ -24,14 +25,15 @@ $$(document).on('pageInit','.page[data-page]',function(e){
             if($$('.view').attr('data-page')!=a){
               myApp.hidePreloader();
             }
-        },100);
+        },1000);
     });
     // alert();
 });
 $$(document).on('pageInit', '.page[data-page="login"]', function (e) {
     
     myApp.login.buttonLoading(function(){
-        setTimeout(myApp.login.buttonSpread,1000);
+        // setTimeout(myApp.login.buttonSpread,10);
+        myApp.login.buttonSpread();
     });
 
 });  
@@ -60,7 +62,7 @@ myApp.login.buttonLoading=function(cb){
     btn.click(function(event) {
         loginValidate(function(username,password,err){
             if(err){
-                alert(err);
+                myApp.alert(err);
             }else{
                btn.addClass('loginBtn-shrink');
                 $$.ajax({
@@ -89,18 +91,18 @@ myApp.login.buttonLoading=function(cb){
     }
     function loginSuccess(data){
         console.log('#Login:success');
-        // console.log(a);
         setTimeout(function(){
             myApp.login.buttonSpread();
             setTimeout(function(){
                 mainView.router.load({
                     url:'app/main'
                 });
-            },500);
+            },300);
         },1000);
     }
     function loginFail(e){
-        console.log('#Login:fail,message:'+e.statusText);
+        myApp.alert('账号或密码错误!');
+        btn.removeClass('loginBtn-shrink');
     }
 }
 myApp.login.buttonSpread=function(){

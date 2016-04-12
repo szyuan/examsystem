@@ -12,12 +12,12 @@
     <!-- Your app title -->
     <title>在线考试主页</title>
     <!-- Path to Framework7 Library CSS, Material Theme -->
-    <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.material.min.css">
+    <link rel="stylesheet" href="/bower_components/Framework7/dist/css/framework7.material.min.css">
     <!-- Path to Framework7 color related styles, Material Theme -->
-    <link rel="stylesheet" href="stylesheets/colors.css">
-    <link rel="stylesheet" href="stylesheets/style.css">
-    <link rel="stylesheet" id="code-style" href="stylesheets/highlight/tomorrow.css">
-    <script src="javascripts/highlight.pack.js"></script>
+    <!-- <link rel="stylesheet" href="stylesheets/colors.css"> -->
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" id="code-style" href="/stylesheets/highlight/tomorrow.css">
+    <script src="/javascripts/highlight.pack.js"></script>
     <!-- <link rel="stylesheet" href="stylesheets/font-awesome.min.css"> -->
     <!-- Path to your custom app styles-->
     <!-- <link rel="stylesheet" href="bower_components/Framework7/dist/css/my-app.css"> -->
@@ -80,11 +80,11 @@
                   <div class="main-stat row card">
                     <div class="col-50">
                       <span>已参加考试</span>
-                      <strong class="pink" id="examedNum">6</strong>
+                      <strong class="pink" id="examedNum"><%=finishedExamSum%></strong>
                     </div>
                     <div class="col-50">
                       <span>平均分</span>
-                      <strong class="pink" id="gpa">82</strong>
+                      <strong class="pink" id="gpa"><%=finishedExamAvg%></strong>
                     </div>
                   </div>
               </div>
@@ -190,9 +190,9 @@
 
     </div>
     <!-- Path to Framework7 Library JS-->
-    <script type="text/javascript" src="bower_components/Framework7/dist/js/framework7.min.js"></script>
+    <script type="text/javascript" src="/bower_components/Framework7/dist/js/framework7.min.js"></script>
     <!-- Path to your app js-->
-    <script type="text/javascript" src="javascripts/my-app.js"></script>
+    <script type="text/javascript" src="/javascripts/my-app.js"></script>
 
   </body>
 </html> 
