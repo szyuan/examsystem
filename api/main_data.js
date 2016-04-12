@@ -22,6 +22,42 @@ exports.getMainData=function(id,callback){
 		}
 	],function(err, results){
 		var mainData={finishedExamSum:results[0],finishedExamAvg:results[1]}
+		// var mainData={
+		// 	finishedExamSum:200,
+		// 	finishedExamAvg:82.3,
+		// 	currentExam:[{
+		// 		status_code:1	//1-即将开始 2-正在进行  0-合格 -1-不合格
+		// 		status:'即将开始',
+		// 		title:'移动web开发期末小测验',
+		// 		teacher:'周润发',
+		// 		totalMinutes:88,
+		// 		createTime:'2017-08-02 8:20'
+		// 	},{
+		// 		status_code:2	//1-即将开始 2-正在进行  0-合格 -1-不合格
+		// 		status:'正在进行',
+		// 		title:'算法设计期末考试'
+		// 		teacher:'刘德华',
+		// 		totalMinutes:119,
+		// 		createTime:'2017-08-03 9:30'
+		// 	}],
+		// 	finishedExam:[{
+		// 		status_code:0	//1-即将开始 2-正在进行  0-合格 -1-不合格
+		// 		status:'合格',
+		// 		score:82,
+		// 		title:'x移动web开发期末小测验',
+		// 		teacher:'周润发',
+		// 		totalMinutes:88,
+		// 		createTime:'2017-08-02 8:20'
+		// 	},{
+		// 		status_code:1	//1-即将开始 2-正在进行  0-合格 -1-不合格
+		// 		status:'不合格',
+		// 		score:59,
+		// 		title:'y算法设计期末考试'
+		// 		teacher:'刘德华',
+		// 		totalMinutes:119,
+		// 		createTime:'2017-08-03 9:30'
+		// 	}]
+		// };
 		callback(mainData);
 		return mainData;
 	});
