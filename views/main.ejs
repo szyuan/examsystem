@@ -35,15 +35,15 @@
             <div class="panel-overlay"></div>
             <div class="panel panel-right panel-cover">
                 <div class="panel-head">
-                  <div class="avatar"></div>
-                  <h4 class="nickname">陈狗蛋</h4>
+                  <div class="avatar"><img src="/images/avatar/u12880228.jpeg" alt=""></div>
+                  <h4 class="nickname"><%=userInfo.name%></h4>
                 </div>
                 <ul class="panel-list">
                   <li><a href="#" class="button">个人信息</a></li>
                   <li><a href="#" class="button">设置</a></li>
                   <li><a href="#" class="button">关于</a></li>
                 </ul>
-                <a href="index.html" class="logout button close-panel link">注销</a>
+                <a href="/func/logout" class="logout button close-panel link external">注销</a>
             </div>
 
             <!-- Top Navbar. In Material theme it should be inside of the page-->
@@ -91,94 +91,60 @@
 
               <div class="content-block"><h2>当前考试</h2></div>
               <ul class="currentExamList examList list">
+                <%for(var i=0,len=currentExam.length;i<len;i++){ 
+                    var ce=currentExam[i];
+                    var iconfont=(currentExam[i].status_code==1)?'&#xe603;':'&#xe61c;';
+                    var iconClass=(currentExam[i].status_code==1)?'startSoon':'examing';
+                %>
                 <li class="row no-gutter ripple">
-                  <a href="app/exam" class="link row">
-                    <div class="col-25 startSoon">
-                      <strong><i class="iconfont">&#xe603;</i></strong>
-                      <span>即将开始</span>
+                  <a href="/app/exam" class="link row" data-examID="<%=ce.examID%>" >
+                    <div class="col-25 <%=iconClass%>">
+                      <strong><i class="icon iconfont"><%-iconfont%></i></strong>
+                      <span><%=ce.status%></span>
                     </div>
                     <div class="col-75">
-                      <h3>移动Web开发期末测验</h3>
+                      <h3><%=ce.title%></h3>
                       <p>
-                        老师：<span class="teacherName">秦高德</span>
-                        考试时间：<span class="examMainTime">90分钟</span>
+                        老师：<span class="teacherName"><%=ce.teacher%></span>
+                        考试时间：<span class="examMainTime"><%=ce.totalMinutes%>分钟</span>
                       </p>
                       <p>
-                        创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
+                        创建时间：<span class="examCreateDate"><%=ce.createTime%></span>
                       </p>
                     </div>
                   </a>
                 </li>
-                <li class="row no-gutter ripple">
-                  <a href="app/exam" class="link row">
-                    <div class="col-25">
-                      <strong><i class="iconfont">&#xe61c;</i></strong>
-                      <span>正在进行</span>
-                    </div>
-                    <div class="col-75">
-                      <h3>算法设计与分析期末考试</h3>
-                      <p>
-                        老师：<span class="teacherName">秦高德</span>
-                        考试时间：<span class="examMainTime">90分钟</span>
-                      </p>
-                      <p>
-                        创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
-                      </p>
-                    </div>
-                  </a>  
-                </li>
+                <% } %>
               </ul>
               
               <div class="content-block historyExam"><h2>已完成考试</h2></div>
               <ul class="historyExamList examList list">
+                <%for(var i=0,len=finishedExam.length;i<len;i++){ 
+                    var fe=finishedExam[i];
+                    var feClass='scorePass';
+                    if(parseInt(fe.score)<60){
+                      feClass='scoreFail';
+                    }
+                %>
                 <li class="row no-gutter ripple">
-                  <div class="col-25 scorePass">
-                    <strong><i class="iconfont">82</i></strong>
-                    <span>合格</span>
-                  </div>
-                  <div class="col-75">
-                    <h3>移动Web开发期末测验</h3>
-                    <p>
-                      老师：<span class="teacherName">秦高德</span>
-                      考试时间：<span class="examMainTime">90分钟</span>
-                    </p>
-                    <p>
-                      创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
-                    </p>
-                  </div>
+                  <a href="/app/exam" class="link row" data-examID="<%=fe.examID%>" >
+                    <div class="col-25 <%=feClass%>">
+                      <strong><i class="iconfont"><%=fe.score%></i></strong>
+                      <span><%=fe.status%></span>
+                    </div>
+                    <div class="col-75">
+                      <h3><%=fe.title%></h3>
+                      <p>
+                        老师：<span class="teacherName"><%=fe.teacher%></span>
+                        考试时长：<span class="examMainTime"><%=fe.totalMinutes%>分钟</span>
+                      </p>
+                      <p>
+                        开考时间：<span class="examCreateDate"><%=fe.createTime%></span>
+                      </p>
+                    </div>
+                  </a>
                 </li> 
-                <li class="row no-gutter ripple">
-                  <div class="col-25 scoreFail">
-                    <strong><i class="iconfont">59</i></strong>
-                    <span>不合格</span>
-                  </div>
-                  <div class="col-75">
-                    <h3>移动Web开发期末测验</h3>
-                    <p>
-                      老师：<span class="teacherName">秦高德</span>
-                      考试时间：<span class="examMainTime">90分钟</span>
-                    </p>
-                    <p>
-                      创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
-                    </p>
-                  </div>
-                </li>
-                <li class="row no-gutter ripple">
-                  <div class="col-25 scorePass">
-                    <strong><i class="iconfont">98</i></strong>
-                    <span>合格</span>
-                  </div>
-                  <div class="col-75">
-                    <h3>移动Web开发期末测验</h3>
-                    <p>
-                      老师：<span class="teacherName">秦高德</span>
-                      考试时间：<span class="examMainTime">90分钟</span>
-                    </p>
-                    <p>
-                      创建时间：<span class="examCreateDate">2016-09-01 7:30 </span>
-                    </p>
-                  </div>
-                </li>
+                <% } %>
               </ul>
 
             </div>

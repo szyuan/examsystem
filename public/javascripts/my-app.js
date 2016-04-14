@@ -95,7 +95,7 @@ myApp.login.buttonLoading=function(cb){
             myApp.login.buttonSpread();
             setTimeout(function(){
                 mainView.router.load({
-                    url:'app/main'
+                    url:'/app/main'
                 });
             },300);
         },1000);

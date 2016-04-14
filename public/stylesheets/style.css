@@ -21,6 +21,9 @@ body{
     -webkit-text-stroke-width: 0.2px;
     -moz-osx-font-smoothing: grayscale;
 }
+.startsoon:after{
+	/*content:'&#xe603;*/
+}
 /*------------login-page-----------*/
 #logoWrap{
 	margin: 5rem;
@@ -366,10 +369,15 @@ ul.list li:nth-child(1){
 .avatar{
 	width: 7.5rem;
 	height: 7.5rem;
-	background-image:url(../images/avatar.jpeg);
+	/*background-image:url(../images/avatar.jpeg);*/
 	background-size:cover;
 	border-radius: 8rem;
 	margin:0 auto;
+	overflow:hidden;
+}
+.avatar img{
+	width: 7.5rem;
+	height: 7.5rem;
 }
 .panel-head .nickname{
 	margin: 0.7rem auto;

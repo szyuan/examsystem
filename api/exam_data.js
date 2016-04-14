@@ -5,13 +5,11 @@ var express = require('express');
 var async=require('async');
 
 
-exports.getMainData=function(id,callback){
-	var mainData={
-		finishedExamSum:0,
-		finishedExamAvg:0,
-		currentExam:[],
-		finishedExam:[],
-		userInfo:{}
+exports.getExamData=function(id,callback){
+	var examData={
+		examInfo:{},
+		questions:[],
+		wrongID:[],
 	}
 	async.parallel([
 		//已完成考试数量
@@ -118,8 +116,3 @@ function getFinishedExamAvg(id,cb){
 	  return '-';
 	});
 }
-
-
-
-exports.getFinishedExamSum=getFinishedExamSum;
-exports.getFinishedExamAvg=getFinishedExamAvg;

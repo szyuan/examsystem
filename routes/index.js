@@ -17,7 +17,6 @@ router.get('/app/*', function(req, res, next) {
   if(!(req.cookies.user)){
   	res.redirect('/');
   }else{
-	// res.render('main',data);
 	next();
   }
 });
@@ -78,6 +77,10 @@ router.get('/func/login', function(req, res, next) {
 	reqGet.on('error',function(e){
 		console.error(e);
 	});
+});
+router.get('/func/logout',function(req,res,next){
+	res.clearCookie('user');
+	res.redirect('/');
 });
 
 module.exports = router;
