@@ -5,114 +5,110 @@ var express = require('express');
 var async=require('async');
 
 
-exports.getExamData=function(id,callback){
+exports.getExamData=function(id,examID,questionNumber,callback){
 	var examData={
+		examType:0,
 		examInfo:{},
 		questions:[],
 		wrongID:[],
+		QuestionNumber:1,
+		currentQuestion:{},
+		questionNumber:questionNumber
 	}
-	async.parallel([
-		//已完成考试数量
-		function(cb){
-			getFinishedExamSum(id,function(data){
-				cb(null,data);
-			});
-		},
-		//平均分数
-		function(cb){
-			getFinishedExamAvg(id,function(data){
-				cb(null,data);
-			});
-		}
-	],function(err, results){
-		mainData.finishedExamSum=results[0];
-		mainData.finishedExamAvg=results[1];
-		mainData.currentExam=[{
-			examID:1,
-			status_code:1,	//1-即将开始 2-正在进行  0-合格 -1-不合格
-			status:'即将开始',
-			title:'移动web开发期末小测验',
-			teacher:'周润发',
-			totalMinutes:88,
-			createTime:'2017-08-02 8:20'
-		},{
-			examID:2,
-			status_code:2,	//1-即将开始 2-正在进行  0-合格 -1-不合格
-			status:'正在进行',
-			title:'算法设计期末考试',
-			teacher:'刘德华',
-			totalMinutes:119,
-			createTime:'2017-08-03 9:30'
-		}];
-		mainData.finishedExam=[{
-			examID:3,
-			status_code:0,	//1-即将开始 2-正在进行  0-合格 -1-不合格
-			status:'合格',
-			score:82,
-			title:'x移动web开发期末小测验',
-			teacher:'周润发',
-			totalMinutes:87,
-			createTime:'2016-07-01 7:10'
-		},{
-			examID:4,
-			status_code:1,	//1-即将开始 2-正在进行  0-合格 -1-不合格
-			status:'不合格',
-			score:59,
-			title:'y算法设计期末考试',
-			teacher:'刘德华',
-			totalMinutes:118,
-			createTime:'2016-07-13 8:20'
-		}];
-		mainData.userInfo={
-			photoUrl:'images/avatar/u12880228.jpeg',
-			name:'陈铁柱'
-		};
 
-		callback(mainData);
-		return mainData;
+	async.parallel([
+		
+	],function(err, results){
+		examData=getSim();
+		examData.currentQuestion=examData.questions[questionNumber-1];
+		callback(examData);
+		return examData;
 	});
 }
 
 //---------------单独功能方法--------------------
 
-//获取已完成考试数量
-function getFinishedExamSum(id,cb){
-
-	var url_finishedExamSum="http://121.42.179.184:8080/examSys/ws/exam/getFinishedExamSum?stuID="+id;
-	var finishedExamSum=null;
-
-	finishedExamSum=http.get(url_finishedExamSum, function(res) {
-	  console.log("@api/已完成考试数量: code:" + res.statusCode);
-
-	  res.on('data',function(data){
-	  	process.stdout.write('@api/已完成考试数量: data:'+data+'\n');
-	  	// return data;
-	  	cb&&cb(data);
-	  });
-
-	}).on('error', function(e) {
-	  console.log("@api/已完成考试数量:错误:" + e.message);
-	  return '-';
-	});
-}
-
-//获取平均分数
-function getFinishedExamAvg(id,cb){
-
-	var url_finishedExamAvg="http://121.42.179.184:8080/examSys/ws/exam/getFinishedExamAvg?stuID="+id;
-	var finishedExamAvg=null;
-
-	finishedExamAvg=http.get(url_finishedExamAvg, function(res) {
-	  console.log("@api/平均分数: code:" + res.statusCode);
-
-	  res.on('data',function(data){
-	  	process.stdout.write('@api/平均分数: data:'+data+'\n');
-	  	// return data;
-	  	cb(data);
-	  });
-
-	}).on('error', function(e) {
-	  console.log("@api/平均分数:错误:" + e.message);
-	  return '-';
-	});
+//-----------------模拟数据----------------------
+function getSim(questionNumber){
+	var examModal={
+		QuestionNumber:1,//当前题号
+		examType:0,//类型【考试/历史】
+		examInfo:{
+			id:1,
+			title:'data-移动Web开发期末测验',
+			startTime:'2016-4-15 10:10',
+			totalTime:'90',
+			questionSum:3
+		},
+		questions:[
+			{
+				id:1,//题目id
+				number:1,//在考试中的题号
+				type:0,//题目类型【0单选/1双选】
+				title:'1以下关于mysql复制关系，描述错误的一项是?请给出这段代码的运行结果',//题干
+				code:'',//若存在代码，则存放题目代码
+				answer:[//答案数组【[{答案id,答案内容},{},...]】
+					{
+						id:2,
+						content:'给元素绑定样式'
+					},{
+						id:3,
+						content:'显示隐藏'
+					},{
+						id:4,
+						content:'var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
+					},{
+						id:5,
+						content:'给元素绑定样式'
+					}
+				]
+			},
+			{
+				id:2,
+				number:2,
+				type:0,
+				title:'2请给出这段代码的运行结果,复制关系关于mysql，描述错误的一项是?',
+				code:'',
+				answer:[
+					{
+						id:6,
+						content:'给元素绑定样式'
+					},{
+						id:7,
+						content:'显示隐藏'
+					},{
+						id:8,
+						content:'var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
+					},{
+						id:9,
+						content:'给元素绑定样式'
+					}
+				]
+			},
+			{
+				id:3,
+				number:3,
+				type:0,
+				title:'3描述错误的一项是,复制关系关于mysql，请给出这段代码的运行结果',
+				code:'',
+				answer:[
+					{
+						id:6,
+						content:'给元素绑定样式'
+					},{
+						id:7,
+						content:'显示隐藏'
+					},{
+						id:8,
+						content:'var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
+					},{
+						id:9,
+						content:'给元素绑定样式'
+					}
+				]
+			}
+		],
+		wrongID:[]
+	};
+	return examModal;
 }

@@ -12,11 +12,11 @@
     <!-- Your app title -->
     <title>考试进行中</title>
     <!-- Path to Framework7 Library CSS, Material Theme -->
-    <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.material.min.css">
-    <link rel="stylesheet" href="stylesheets/colors.css">
-    <link rel="stylesheet" href="stylesheets/style.css">
-    <!-- <link rel="stylesheet" href="stylesheets/highlight/monokai-sublime.css"> -->
-    <link rel="stylesheet" id="code-style" href="stylesheets/highlight/tomorrow.css">
+    <link rel="stylesheet" href="/bower_components/Framework7/dist/css/framework7.material.min.css">
+    <link rel="stylesheet" href="/stylesheets/colors.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- <link rel="stylesheet" href="/stylesheets/highlight/monokai-sublime.css"> -->
+    <link rel="stylesheet" id="code-style" href="/stylesheets/highlight/tomorrow.css">
     <script src="javascripts/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
   </head>
@@ -26,17 +26,25 @@
         <div class="pages">
         <!-- --------------------- -->
           <div data-page="exam" class="page">
- 
+            <%
+              var typeName='';
+
+              if(currentQuestion.type){
+                  typeName='多选题';
+              }else{
+                  typeName='单选题';
+              }
+            %>
             <div class="navbar">
               <div class="navbar-inner">
                   <div class="left">
-                    <a href="main.html" class="icon-only link">
+                    <a href="//app/main" class="icon-only link">
                           <i class="iconfont small">&#xe617;</i>
                       </a>
                   </div>
                   <div class="center countdown">1:18:52</div>
                   <div class="right">
-                      <a href="/app/answersheet" class="icon-only link">
+                      <a href="//app/answersheet" class="icon-only link">
                           <i class="iconfont">&#xe618;</i>
                       </a>
                   </div>
@@ -50,18 +58,19 @@
                   <div class="exam-title card">
                       <div class="row no-gutter">
                         <div class="col-80">
-                          <h2>移动Web开发期末测验</h2>
+                          <h2><%=examInfo.title%></h2>
                         </div>
                         <div class="col-20">
-                          <p><span class="questionNum">12</span>/<span class="questionSum">43</span></p>
+                          <p><span class="questionNum">12</span>/<span class="questionSum"><%=examInfo.questionSum%></span></p>
                         </div>
                       </div>
                   </div>
 
                   <div class="question row card">
-                    <h3 class="question-type"><span>单选题</span></h3>
+                    <h3 class="question-type"><span><%=typeName%></span></h3>
                     <div class="question-content">
-                      <p>以下关于mysql复制关系，描述错误的一项是?请给出这段代码的运行结果（ ）</p>
+                      <p><%=currentQuestion.title%></p>
+                      <% if(!(currentQuestion.code.trim()=='')){ %>
                       <div class="code">
                         <pre><code class="javascript">myApp.login=myApp.login||{};
 myApp.login.buttonLoading=function(cb){
@@ -73,8 +82,9 @@ myApp.login.buttonLoading=function(cb){
   });
 }</code></pre>
                       </div>
+                      <% } %>
                     </div>
-                    <a href="javascript:;" class="button code-style-toggle"><i class="iconfont">&#xe626;</i></a>
+                    <a href="/javascript:;" class="button code-style-toggle"><i class="iconfont">&#xe626;</i></a>
 <!-- &#9;-Tab &#10;-换行 -->
                   </div>
     <script src="javascripts/prism.js"></script>
@@ -83,6 +93,11 @@ myApp.login.buttonLoading=function(cb){
               <div class="list-block answerList">
                 <ul>
                   <!-- Single radio input -->
+                  <%
+                    var aLen=currentQuestion.answer.length;
+                    if(!currentQuestion.type){
+                      for(var ai=0;ai<aLen;ai++){
+                  %>
                   <li>
                     <label class="label-radio item-content">
                       <!-- Checked by default -->
@@ -92,48 +107,24 @@ myApp.login.buttonLoading=function(cb){
                         <span class="optionCode">A</span>
                       </div>
                       <div class="item-inner">
-                        <div class="item-title">显示隐藏</div>
-                      </div>
+                        <div class="item-title"><%=currentQuestion.answer[ai].content%></div>
+                      </div><%=currentQuestion.number%>
                     </label>
                   </li>
-                  <!-- Another radio input -->
+                  <% } }else{ for(var ai=0;ai<aLen;ai++){ %>
                   <li>
-                    <label class="label-radio item-content">
-                      <input type="radio" name="my-radio" value="Movies">
+                    <label class="label-checkbox item-content">
+                      <!-- Checked by default -->
+                      <input type="checkbox" name="my-checkbox" value="Books" checked="checked">
                       <div class="item-media">
-                        <i class="icon icon-form-radio"></i>
-                        <span class="optionCode">B</span>
+                        <i class="icon icon-form-checkbox"></i>
                       </div>
                       <div class="item-inner">
-                        <div class="item-title">给元素绑定样式</div>
+                        <div class="item-title">Books</div>
                       </div>
                     </label>
                   </li>
-                  <li>
-                    <label class="label-radio item-content">
-                      <input type="radio" name="my-radio" value="Movies">
-                      <div class="item-media">
-                        <i class="icon icon-form-radio"></i>
-                        <span class="optionCode">C</span>
-                      </div>
-                      <div class="item-inner">
-                        <div class="item-title"><code>var myDiv = document.getElementById ("statusCode");
-                        myDiv.innerHTML = req.statusCode;</code></div>
-                      </div>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="label-radio item-content">
-                      <input type="radio" name="my-radio" value="Movies">
-                      <div class="item-media">
-                        <i class="icon icon-form-radio"></i>
-                        <span class="optionCode">D</span>
-                      </div>
-                      <div class="item-inner">
-                        <div class="item-title">Movies</div>
-                      </div>
-                    </label>
-                  </li>
+                  <% } } %>
                 </ul>
               </div>
               <!-- /radio -->
@@ -141,8 +132,11 @@ myApp.login.buttonLoading=function(cb){
             </div>
             <div class="toolbar turning">
               <div class="toolbar-inner">
-                  <a href="exam2.html" class="link"><i class="iconfont">&#xe639;</i></a>
-                  <a href="exam2.html" class="link"><i class="iconfont">&#xe636;</i></a>
+              <% if(currentQuestion.number>1){ %>
+                  <a href="/app/exam?id=1&qNumber=<%=(parseInt(currentQuestion.number)-1)%>" class="link"><i class="iconfont">&#xe639;</i></a>
+              <% } if(currentQuestion.number<questions.length){ %>    
+                  <a href="/app/exam?id=1&qNumber=<%=(parseInt(currentQuestion.number)+1)%>" class="link external"><i class="iconfont">&#xe636;</i></a>
+              <% } %>    
               </div>
             </div>
 
@@ -153,8 +147,8 @@ myApp.login.buttonLoading=function(cb){
 
     </div>
     <!-- Path to Framework7 Library JS-->
-    <script type="text/javascript" src="bower_components/Framework7/dist/js/framework7.min.js"></script>
-    <script src="javascripts/my-app.js"></script>
+    <script type="text/javascript" src="/bower_components/Framework7/dist/js/framework7.min.js"></script>
+    <script src="/javascripts/my-app.js"></script>
 
   </body>
 </html> 

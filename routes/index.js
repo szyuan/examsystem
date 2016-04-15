@@ -29,6 +29,26 @@ router.get('/app/main', function(req, res, next) {
 	res.render('main',data);
   });
 });
+//考试页面路由
+//考题缓存
+var examDataCache=null;
+router.get('/app/exam', function(req, res, next) {
+	var examData=require('../api/exam_data.js');
+	var examID=req.query.id;
+	var qNumber=req.query.qNumber||1;
+	if(!examDataCache){
+		examData.getExamData(12880234,examID,qNumber,function(data){
+			console.log('@route/examData:'+data);
+			res.render('exam',data);
+			examDataCache=data;
+		});
+	}else{
+		examDataCache.questionNumber=qNumber;
+		res.render('exam',examDataCache);
+		console.log('@route/examDataCache:'+examDataCache);
+		console.log('@route/qNumber:'+examDataCache.questionNumber);
+	}
+});
 router.get('/app/:pageName', function(req, res, next) {
 	var pageName=req.params.pageName;
 	res.render(pageName);

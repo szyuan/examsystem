@@ -17,18 +17,18 @@ var mainView = myApp.addView('.view-main', {
 });
 
 //让所有class为link的a标签，在点击跳转页面时弹出loading
-$$(document).on('pageInit','.page[data-page]',function(e){
-    $$('a.link').on('click', function () {
-        var a=$$('.view').attr('data-page');
-        myApp.showPreloader();
-        setInterval(function(){
-            if($$('.view').attr('data-page')!=a){
-              myApp.hidePreloader();
-            }
-        },1000);
-    });
-    // alert();
-});
+// $$(document).on('pageInit','.page[data-page]',function(e){
+//     $$('a.link').on('click', function () {
+//         var a=$$('.view').attr('data-page');
+//         myApp.showPreloader();
+//         setInterval(function(){
+//             if($$('.view').attr('data-page')!=a){
+//               myApp.hidePreloader();
+//             }
+//         },1000);
+//     });
+//     // alert();
+// });
 $$(document).on('pageInit', '.page[data-page="login"]', function (e) {
     
     myApp.login.buttonLoading(function(){
@@ -93,11 +93,11 @@ myApp.login.buttonLoading=function(cb){
         console.log('#Login:success');
         setTimeout(function(){
             myApp.login.buttonSpread();
-            setTimeout(function(){
+            // setTimeout(function(){
                 mainView.router.load({
                     url:'/app/main'
                 });
-            },300);
+            // },300);
         },1000);
     }
     function loginFail(e){
