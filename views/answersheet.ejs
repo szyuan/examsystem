@@ -44,32 +44,35 @@
               <div class="content-block">
 
                   <div class="sheet-title card">
-                    <h2>移动Web开发期末测验</h2>
+                    <h2><%=examInfo.title%></h2>
                   </div>
 
                   <div class="exam-intro card">
                     <div class="exam-intro-content row no-gutter">
                       <ul class="col-50">
                         <li>答题人：<span class="username-txt">陈惠霞</span></li>
-                        <li>创建老师：<span class="teachername-txt">秦高德</span></li>
+                        <li>创建老师：<span class="teachername-txt"><%=examInfo.teacher%></span></li>
                         <li>开考时间：<span class="examstarttime-txt">8:30</span></li>
                       </ul>
                       <ul class="col-50">
                         <li>班级：<span class="userclass-txt">12计科一班</span></li>
-                        <li>考试时间：<span class="examtimelimit-txt">90</span>分钟</li>
+                        <li>考试时间：<span class="examtimelimit-txt"><%=examInfo.totalTime%></span>分钟</li>
                         <li>预计结束时间：<span class="examendtime-txt">10:00</span></li>
                       </ul>
                     </div>
                     <div class="exam-progressbar">
                       <div class="current-progress"></div>
                       <div class="exam-progress">
-                        <span class="progress-now">12</span>/<span class="progress-total">39</span>
+                        <span class="progress-now"><%=currentQuestion.number%></span>/<span class="progress-total"><%=examInfo.questionSum%></span>
                       </div>
                     </div>
                   </div>              
               </div>
               <div class="list">
                   <ol class="qid-list">
+                  <!-- <li class="qid-item"><strong class="qid qid-answered ripple">3</strong></li>
+                    <li class="qid-item"><strong class="qid qid-active ripple">4</strong></li>
+                    <li class="qid-item"><strong class="qid ripple">5</strong></li> -->
                     <li class="qid-item"><strong class="qid qid-answered ripple">1</strong></li>
                     <li class="qid-item"><strong class="qid qid-answered ripple">2</strong></li>
                     <li class="qid-item"><strong class="qid qid-answered ripple">3</strong></li>

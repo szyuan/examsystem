@@ -38,9 +38,8 @@ router.get('/app/exam', function(req, res, next) {
 	var qNumber=req.query.qNumber||1;
 	if(!examDataCache){
 		examData.getExamData(12880234,examID,qNumber,function(data){
-			console.log('@route/examData:'+data);
-			res.render('exam',data);
 			examDataCache=data;
+			res.render('exam',data);
 		});
 	}else{
 		examDataCache.questionNumber=qNumber;
@@ -48,6 +47,9 @@ router.get('/app/exam', function(req, res, next) {
 		console.log('@route/examDataCache:'+examDataCache);
 		console.log('@route/qNumber:'+examDataCache.questionNumber);
 	}
+});
+router.get('/app/answersheet', function(req, res, next) {
+	res.render('answersheet',examDataCache);
 });
 router.get('/app/:pageName', function(req, res, next) {
 	var pageName=req.params.pageName;

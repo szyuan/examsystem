@@ -485,7 +485,7 @@ div[data-page=exam] .page-content{
 .answerList i.icon-form-radio:after,.answerList i.icon-form-checkbox:after{
 	background-color: lightcoral !important;
 }
-.answerList .label-radio .item-title{
+.answerList .item-title{
 	white-space: pre-wrap;
 }
 .answerList .label-radio .item-title code{

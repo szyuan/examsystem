@@ -36,9 +36,11 @@ function getSim(questionNumber){
 		examInfo:{
 			id:1,
 			title:'data-移动Web开发期末测验',
-			startTime:'2016-4-15 10:10',
+			startTime:'Sun Apr 17 2016 13:00:00',
+			// startTime:'2016-04-15T10:10:00',
 			totalTime:'90',
-			questionSum:3
+			questionSum:3,
+			teacher:'秦高德0'
 		},
 		questions:[
 			{
@@ -49,39 +51,39 @@ function getSim(questionNumber){
 				code:'',//若存在代码，则存放题目代码
 				answer:[//答案数组【[{答案id,答案内容},{},...]】
 					{
-						id:2,
-						content:'给元素绑定样式'
+						id:'A',
+						content:'1给元素绑定样式'
 					},{
-						id:3,
-						content:'显示隐藏'
+						id:'B',
+						content:'1显示隐藏'
 					},{
-						id:4,
-						content:'var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
+						id:'C',
+						content:'1var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
 					},{
-						id:5,
-						content:'给元素绑定样式'
+						id:'D',
+						content:'1给元素绑定样式'
 					}
 				]
 			},
 			{
 				id:2,
 				number:2,
-				type:0,
+				type:1,
 				title:'2请给出这段代码的运行结果,复制关系关于mysql，描述错误的一项是?',
 				code:'',
 				answer:[
 					{
-						id:6,
-						content:'给元素绑定样式'
+						id:'A',
+						content:'2给元素绑定样式'
 					},{
-						id:7,
-						content:'显示隐藏'
+						id:'B',
+						content:'2显示隐藏'
 					},{
-						id:8,
-						content:'var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
+						id:'C',
+						content:'2var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
 					},{
-						id:9,
-						content:'给元素绑定样式'
+						id:'D',
+						content:'2给元素绑定样式'
 					}
 				]
 			},
@@ -94,7 +96,7 @@ function getSim(questionNumber){
 				answer:[
 					{
 						id:6,
-						content:'给元素绑定样式'
+						content:'3给元素绑定样式'
 					},{
 						id:7,
 						content:'显示隐藏'

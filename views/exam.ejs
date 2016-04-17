@@ -27,24 +27,27 @@
         <!-- --------------------- -->
           <div data-page="exam" class="page">
             <%
+
+              var nowQuestion=questions[questionNumber-1];
               var typeName='';
 
-              if(currentQuestion.type){
+              if(nowQuestion.type){
                   typeName='多选题';
               }else{
                   typeName='单选题';
               }
+
             %>
             <div class="navbar">
               <div class="navbar-inner">
                   <div class="left">
-                    <a href="//app/main" class="icon-only link">
+                    <a href="/app/main" class="icon-only link">
                           <i class="iconfont small">&#xe617;</i>
                       </a>
                   </div>
-                  <div class="center countdown">1:18:52</div>
+                  <div class="center countdown" id="countdown" data-startTime="Sun Apr 17 2016 16:00:00" data-totalMinutes="<%=examInfo.totalTime%>" >已结束</div>
                   <div class="right">
-                      <a href="//app/answersheet" class="icon-only link">
+                      <a href="/app/answersheet" class="icon-only link">
                           <i class="iconfont">&#xe618;</i>
                       </a>
                   </div>
@@ -61,7 +64,7 @@
                           <h2><%=examInfo.title%></h2>
                         </div>
                         <div class="col-20">
-                          <p><span class="questionNum">12</span>/<span class="questionSum"><%=examInfo.questionSum%></span></p>
+                          <p><span class="questionNum"><%=questionNumber%></span>/<span class="questionSum"><%=examInfo.questionSum%></span></p>
                         </div>
                       </div>
                   </div>
@@ -69,8 +72,8 @@
                   <div class="question row card">
                     <h3 class="question-type"><span><%=typeName%></span></h3>
                     <div class="question-content">
-                      <p><%=currentQuestion.title%></p>
-                      <% if(!(currentQuestion.code.trim()=='')){ %>
+                      <p><%=nowQuestion.title%></p>
+                      <% if(!(nowQuestion.code.trim()=='')){ %>
                       <div class="code">
                         <pre><code class="javascript">myApp.login=myApp.login||{};
 myApp.login.buttonLoading=function(cb){
@@ -94,8 +97,8 @@ myApp.login.buttonLoading=function(cb){
                 <ul>
                   <!-- Single radio input -->
                   <%
-                    var aLen=currentQuestion.answer.length;
-                    if(!currentQuestion.type){
+                    var aLen=nowQuestion.answer.length;
+                    if(!nowQuestion.type){
                       for(var ai=0;ai<aLen;ai++){
                   %>
                   <li>
@@ -104,11 +107,11 @@ myApp.login.buttonLoading=function(cb){
                       <input type="radio" name="my-radio" value="Books" checked="checked">
                       <div class="item-media">
                         <i class="icon icon-form-radio"></i>
-                        <span class="optionCode">A</span>
+                        <span class="optionCode"><%=nowQuestion.answer[ai].id%></span>
                       </div>
                       <div class="item-inner">
-                        <div class="item-title"><%=currentQuestion.answer[ai].content%></div>
-                      </div><%=currentQuestion.number%>
+                        <div class="item-title"><%=nowQuestion.answer[ai].content%></div>
+                      </div>
                     </label>
                   </li>
                   <% } }else{ for(var ai=0;ai<aLen;ai++){ %>
@@ -117,10 +120,10 @@ myApp.login.buttonLoading=function(cb){
                       <!-- Checked by default -->
                       <input type="checkbox" name="my-checkbox" value="Books" checked="checked">
                       <div class="item-media">
-                        <i class="icon icon-form-checkbox"></i>
+                        <i class="icon icon-form-checkbox"></i><span class="optionCode"><%=nowQuestion.answer[ai].id%></span>
                       </div>
                       <div class="item-inner">
-                        <div class="item-title">Books</div>
+                        <div class="item-title"><%=nowQuestion.answer[ai].content%></div>
                       </div>
                     </label>
                   </li>
@@ -132,11 +135,13 @@ myApp.login.buttonLoading=function(cb){
             </div>
             <div class="toolbar turning">
               <div class="toolbar-inner">
-              <% if(currentQuestion.number>1){ %>
-                  <a href="/app/exam?id=1&qNumber=<%=(parseInt(currentQuestion.number)-1)%>" class="link"><i class="iconfont">&#xe639;</i></a>
-              <% } if(currentQuestion.number<questions.length){ %>    
-                  <a href="/app/exam?id=1&qNumber=<%=(parseInt(currentQuestion.number)+1)%>" class="link external"><i class="iconfont">&#xe636;</i></a>
-              <% } %>    
+              <% if(questionNumber>1){ %>
+                  <a href="/app/exam?id=1&qNumber=<%=(parseInt(questionNumber)-1)%>" class="link"><i class="iconfont">&#xe639;</i></a>
+              <% } if(questionNumber<questions.length){ %>    
+                  <a href="/app/exam?id=1&qNumber=<%=(parseInt(questionNumber)+1)%>" class="link"><i class="iconfont">&#xe636;</i></a>
+              <% } if(questionNumber>=questions.length){ %>
+                  <a href="/app/answersheet" class="icon-only link"><i class="iconfont">&#xe618;</i></a>
+              <% } %>
               </div>
             </div>
 

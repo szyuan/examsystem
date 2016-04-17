@@ -37,13 +37,41 @@ $$(document).on('pageInit', '.page[data-page="login"]', function (e) {
     });
 
 });  
-$$(document).on('pageInit', '.page[data-page="exam"],.page[data-page="exam2"]', function (e) {
+$$(document).on('pageInit', '.page[data-page="exam"]', function (e) {
     hljs.initHighlightingOnLoad();
     $$('pre code').each(function(i, block) {
         hljs.highlightBlock(block);
     });
-
     codeStyle();
+
+    //实现倒计时
+    clearInterval(myApp.countdownTimer);
+    var oCountdown=$$('.countdown');
+    var totalMinutes=parseInt(oCountdown.data('totalMinutes'));
+    var startTime=new Date(oCountdown.data('startTime'));
+    var totalMS=totalMinutes*60000;
+    // var elapsedMS=new Date()-startTime;
+    var remainMS=totalMS-(new Date()-startTime);
+    function getNewRemainStr(){
+        //剩余毫秒数=总毫秒数-（当前时间-开始时间）
+        var remainMS=totalMS-(new Date()-startTime);
+        var remainHours=parseInt(remainMS/3600000);
+        var remainMinutes=parseInt((remainMS-remainHours*3600000)/60000);
+        var remainSeconds=parseInt((remainMS-remainHours*3600000-remainMinutes*60000)/1000);
+        var remainStr=remainHours+':'+remainMinutes+':'+remainSeconds;
+        return remainStr;
+    }
+    if(remainMS>0){
+        oCountdown.html(getNewRemainStr());
+        myApp.countdownTimer=setInterval(function(){
+            var remainStr=getNewRemainStr();
+            if(remainMS<=0){
+                clearInterval(myApp.countdownTimer);
+            }else {
+                oCountdown.html(remainStr);
+            }oCountdown.html(remainStr);
+        },500);
+    }
 
 }); 
 
