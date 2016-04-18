@@ -5,5 +5,8 @@ var router = express.Router();
 router.get('/main', function(req, res, next) {
   res.render('admin-index');
 });
+router.get('/create_exam', function(req, res, next) {
+  res.render('admin-create_exam');
+});
 
 module.exports = router;
