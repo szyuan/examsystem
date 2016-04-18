@@ -2,6 +2,8 @@ var http=require('http');
 var express = require('express');
 var router = express.Router();
 
+var stuInfo={};
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // res.render('index', { title: 'Express' });
@@ -61,6 +63,7 @@ router.get('/app/:pageName', function(req, res, next) {
 router.get('/func/login', function(req, res, next) {
 	var userName=req.query.userName;
 	var password=req.query.password;
+	// stuID=userName;
 
 	var reqOption = {
 		host : '121.42.179.184', // here only the domain name
