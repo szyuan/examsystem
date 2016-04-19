@@ -335,6 +335,13 @@ ul.list li:nth-child(1){
 	margin:0.1rem;
 	font-size: 1.2rem;
 }
+.examList li.no-data{
+	height:3rem;
+	min-height:0;
+}
+.examList li.no-data i,.examList li.no-data h3{
+	opacity: 0.4;
+}
 
 .historyExamList .col-25 strong i{
 	display: inline-block;

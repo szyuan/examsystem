@@ -21,7 +21,7 @@ exports.getMainData=function(basicInfo,callback){
 	getMainAll(stuId,classID,function(rawData){
 		var mainData='';
 		try{
-			mainData=mainDataformat(rawData);
+			mainData=format(rawData);
 		}catch(e){
 			console.log('@main_data getMainAll Error:'+e.message);
 		}
@@ -34,6 +34,10 @@ exports.getMainData=function(basicInfo,callback){
 		fData.finishedExamSum=rawJson.examSum;
 		fData.finishedExamAvg=rawJson.examAvg;
 		fData.finishedExam=rawJson.finishedExams.infos;
+		fData.startingExam=rawJson.startingExams;
+		fData.unstartExam=rawJson.unStartExams;
+		fData.currentExam=rawJson.startingExams.concat(rawJson.unStartExams);
+		fData.basicInfo=basicInfo;
 		
 		return fData;
 	}
@@ -50,11 +54,16 @@ function getMainAll(stuId,classID,mainCallback){
 	var fData={};
 
 	mainAll=http.get(url_getMainAll,function(res){
+		var fullData='';
 		console.log("@api/首页数据: code:" + res.statusCode);
 		res.on('data',function(data){
 			process.stdout.write('@api/首页数据: data:'+data+'\n');
+		  	fullData+=data;
+		});
+		res.on('end',function(){
 		  	// return data;
-		  	mainCallback&&mainCallback(data);
+		  	mainCallback&&mainCallback(fullData);
+		  	return;
 		});
 	}).on('error',function(e){
 		console.log("@api/已完成考试数量:错误:" + e.message);

@@ -36,12 +36,13 @@
               var finishedExamAvg=finishedExamAvg||'-';
               var currentExam=currentExam||[];
               var finishedExam=finishedExam||[];
+              var basicInfo=basicInfo||{};
             %>
             <div class="panel-overlay"></div>
             <div class="panel panel-right panel-cover">
                 <div class="panel-head">
                   <div class="avatar"><img src="/images/avatar/u12880228.jpeg" alt=""></div>
-                  <h4 class="nickname"></h4>
+                  <h4 class="nickname"><%=basicInfo.stuInfo.Name%></h4>
                 </div>
                 <ul class="panel-list">
                   <li><a href="#" class="button">个人信息</a></li>
@@ -96,39 +97,68 @@
 
               <div class="content-block"><h2>当前考试</h2></div>
               <ul class="currentExamList examList list">
-                <%for(var i=0,len=currentExam.length;i<len;i++){ 
+              <!-- 当前没有考试 -->
+                <% if(currentExam.length<=0){ %>
+                <li class="row no-gutter ripple no-data">
+                  <div class="col-25 <%=iconClass%>">
+                      <strong><i class="icon iconfont">&#xe61e;</i></strong>
+                    </div>
+                    <div class="col-75">
+                      <h3>当前没有考试</h3>
+                    </div>
+                </li>
+                <!-- 当前存在考试 -->
+                <%}else{
+                  for(var i=0,len=currentExam.length;i<len;i++){ 
                     var ce=currentExam[i];
-                    var iconfont=(currentExam[i].status_code==1)?'&#xe603;':'&#xe61c;';
-                    var iconClass=(currentExam[i].status_code==1)?'startSoon':'examing';
+                    var iconfont='&#xe61c;';
+                    var iconClass='examing';
+                    var statusName='进行中';
+                    if(currentExam[i].isFinished==0){
+                      iconfont='&#xe603;';
+                      iconClass='startSoon';
+                      statusName='即将开始';
+                    }
                 %>
                 <li class="row no-gutter ripple">
                   <a href="/app/exam?id=520" class="link row" data-examID="<%=ce.examID%>" >
                     <div class="col-25 <%=iconClass%>">
                       <strong><i class="icon iconfont"><%-iconfont%></i></strong>
-                      <span><%=ce.status%></span>
+                      <span><%=statusName%></span>
                     </div>
                     <div class="col-75">
-                      <h3><%=ce.title%></h3>
+                      <h3><%=ce.examInfo.examName%></h3>
                       <p>
-                        老师：<span class="teacherName"><%=ce.teacher%></span>
-                        考试时间：<span class="examMainTime"><%=ce.totalMinutes%>分钟</span>
+                        老师：<span class="teacherName"><%=ce.examInfo.createTeacher%></span>
+                        考试时间：<span class="examMainTime"><%=ce.examInfo.examTime%>分钟</span>
                       </p>
                       <p>
-                        创建时间：<span class="examCreateDate"><%=ce.createTime%></span>
+                        创建时间：<span class="examCreateDate"><%=ce.examInfo.startTime%></span>
                       </p>
                     </div>
                   </a>
                 </li>
-                <% } %>
+                <% }} %>
               </ul>
               
               <div class="content-block historyExam"><h2>已完成考试</h2></div>
               <ul class="historyExamList examList list">
-                <%for(var i=0,len=finishedExam.length;i<len;i++){ 
+                <% if(finishedExam.length<=0){ %>
+                <li class="row no-gutter ripple no-data">
+                  <div class="col-25 <%=iconClass%>">
+                      <strong><i class="icon iconfont">&#xe61e;</i></strong>
+                    </div>
+                    <div class="col-75">
+                      <h3>没有已完成考试</h3>
+                    </div>
+                </li>
+                <% }else{
+                for(var i=0,len=finishedExam.length;i<len;i++){ 
                     var fe=finishedExam[i];
-                    var feClass='scorePass';
+                    var fe_class='scorePass';
                     var fe_status='通过';
                     
+                    var fe_examID=fe.stuExamInfo.examID||'';
                     var fe_score=fe.stuExamInfo.score||0;
                     var fe_title=fe.exam.examName||'-';
                     var fe_teacher=fe.exam.createTeacher||'-';
@@ -141,7 +171,7 @@
                     }
                 %>
                 <li class="row no-gutter ripple">
-                  <a href="/app/exam" class="link row" data-examID="<%=fe.examID%>" >
+                  <a href="/app/exam" class="link row" data-examID="<%=fe_examID%>" >
                     <div class="col-25 <%=fe_class%>">
                       <strong><i class="iconfont"><%=fe_score%></i></strong>
                       <span><%=fe_status%></span>
@@ -158,7 +188,7 @@
                     </div>
                   </a>
                 </li> 
-                <% } %>
+                <% } } %>
               </ul>
 
             </div>
