@@ -2,7 +2,7 @@ var http=require('http');
 var express = require('express');
 var router = express.Router();
 
-var stuInfo={};
+var stuInfo={};//basicInfo
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,10 +25,18 @@ router.get('/app/*', function(req, res, next) {
 //首页路由
 router.get('/app/main', function(req, res, next) {
   var mainData=require('../api/main_data.js');
-  mainData.getMainData(12880234,function(data){
-  	console.log('@route/mainData:'+data);
-  	//data:{finishedExamSum:[],finishedExamAvg:[],}
-	res.render('main',data);
+  //将基础登录数据作为参数传入
+  mainData.getMainData(stuInfo,function(data){
+  	// console.log('@route/mainData:'+data);
+  	//将基础登录数据添加进首页数据
+  	// data.basicInfo=stuInfo;
+	res.render('main',data,function(err,html){
+		if(err){
+			console.log('@router-main-render-error:'+err);	
+		}else {
+			res.send(html);
+		}
+	});
   });
 });
 //考试页面路由
@@ -63,13 +71,12 @@ router.get('/app/:pageName', function(req, res, next) {
 router.get('/func/login', function(req, res, next) {
 	var userName=req.query.userName;
 	var password=req.query.password;
-	// stuID=userName;
 
 	var reqOption = {
 		host : '121.42.179.184', // here only the domain name
 		port : 8080,
 		path : '/examSys/ws/login/check?userName='+userName+'&password='+password,
-		method : 'GET' // do GET
+		method : 'POST' // do GET
 	};
 	console.log('@login:open connention');
 	var reqGet=http.request(reqOption,function(hRes){
@@ -86,11 +93,21 @@ router.get('/func/login', function(req, res, next) {
 				}else{
 					res.setHeader("Content-Type", "application/json; charset=utf-8");
 					res.cookie('user',userName,{
-						maxAge: 1440000,
+						maxAge: 18000000,
 						httpOnly:true, 
 						path:'/'
 					});
 					res.send(d);
+					//将登录数据赋值给全局学生资料stuInfo
+					var loginInfo=JSON.parse(d);
+					for(var key in loginInfo){
+						stuInfo[key]=loginInfo[key];
+					}
+					console.log('@login stuInfo:{');
+					for(var key in loginInfo){
+						console.log(key+':'+stuInfo[key]);
+					}
+					console.log('}');
 				}
 			});
 		}else{

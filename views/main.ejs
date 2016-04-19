@@ -31,12 +31,17 @@
         <div class="pages">
         <!-- --------------------- -->
           <div data-page="main" class="page">
-            
+            <%
+              var finishedExamSum=finishedExamSum||'-';
+              var finishedExamAvg=finishedExamAvg||'-';
+              var currentExam=currentExam||[];
+              var finishedExam=finishedExam||[];
+            %>
             <div class="panel-overlay"></div>
             <div class="panel panel-right panel-cover">
                 <div class="panel-head">
                   <div class="avatar"><img src="/images/avatar/u12880228.jpeg" alt=""></div>
-                  <h4 class="nickname"><%=userInfo.name%></h4>
+                  <h4 class="nickname"></h4>
                 </div>
                 <ul class="panel-list">
                   <li><a href="#" class="button">个人信息</a></li>
@@ -122,24 +127,33 @@
                 <%for(var i=0,len=finishedExam.length;i<len;i++){ 
                     var fe=finishedExam[i];
                     var feClass='scorePass';
-                    if(parseInt(fe.score)<60){
-                      feClass='scoreFail';
+                    var fe_status='通过';
+                    
+                    var fe_score=fe.stuExamInfo.score||0;
+                    var fe_title=fe.exam.examName||'-';
+                    var fe_teacher=fe.exam.createTeacher||'-';
+                    var fe_totalMinutes=fe.exam.examTime||999;
+                    var fe_createTime=fe.exam.startTime||'-/-/-';
+
+                    if(parseInt(fe_score)<60){
+                      fe_class='scoreFail';
+                      fe_status='未合格';
                     }
                 %>
                 <li class="row no-gutter ripple">
                   <a href="/app/exam" class="link row" data-examID="<%=fe.examID%>" >
-                    <div class="col-25 <%=feClass%>">
-                      <strong><i class="iconfont"><%=fe.score%></i></strong>
-                      <span><%=fe.status%></span>
+                    <div class="col-25 <%=fe_class%>">
+                      <strong><i class="iconfont"><%=fe_score%></i></strong>
+                      <span><%=fe_status%></span>
                     </div>
                     <div class="col-75">
-                      <h3><%=fe.title%></h3>
+                      <h3><%=fe_title%></h3>
                       <p>
-                        老师：<span class="teacherName"><%=fe.teacher%></span>
-                        考试时长：<span class="examMainTime"><%=fe.totalMinutes%>分钟</span>
+                        老师：<span class="teacherName"><%=fe_teacher%></span>
+                        考试时长：<span class="examMainTime"><%=fe_totalMinutes%>分钟</span>
                       </p>
                       <p>
-                        开考时间：<span class="examCreateDate"><%=fe.createTime%></span>
+                        开考时间：<span class="examCreateDate"><%=fe_createTime%></span>
                       </p>
                     </div>
                   </a>
