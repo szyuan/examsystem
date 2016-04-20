@@ -42,19 +42,26 @@ router.get('/app/main', function(req, res, next) {
 //考试页面路由
 //考题缓存
 var examDataCache=null;
+var examIDCache='-1';
 router.get('/app/exam', function(req, res, next) {
 	var examData=require('../api/exam_data.js');
 	var examID=req.query.id;
 	var qNumber=req.query.qNumber||1;
-	if(!examDataCache){
-		examData.getExamData(12880234,examID,qNumber,function(data){
+	var examInfo=(req.query.examInfo)?JSON.parse(req.query.examInfo):{};
+	//若缓存不存在或更换了考试，则重新获取数据
+	if((!examDataCache)||(examID!=examIDCache)){
+		examData.getExamData(12880234,examID,qNumber,examInfo,function(data){
 			examDataCache=data;
-			res.render('exam',data);
+			examIDCache=examID;
+			examDataCache.questionNumber=qNumber;
+			examDataCache.examID=examID;
+			res.render('exam',examDataCache);
+			console.log('@route/--nocache!');
 		});
 	}else{
 		examDataCache.questionNumber=qNumber;
 		res.render('exam',examDataCache);
-		console.log('@route/examDataCache:'+examDataCache);
+		console.log('@route/examDataCache:okokokokokokokokok');
 		console.log('@route/qNumber:'+examDataCache.questionNumber);
 	}
 });

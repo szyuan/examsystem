@@ -15,10 +15,7 @@
     <link rel="stylesheet" href="/bower_components/Framework7/dist/css/framework7.material.min.css">
     <link rel="stylesheet" href="/stylesheets/colors.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <!-- <link rel="stylesheet" href="/stylesheets/highlight/monokai-sublime.css"> -->
-    <link rel="stylesheet" id="code-style" href="/stylesheets/highlight/tomorrow.css">
-    <script src="javascripts/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    
   </head>
   <body class="theme-white color">
     <div class="views">
@@ -64,7 +61,7 @@
                           <h2><%=examInfo.title%></h2>
                         </div>
                         <div class="col-20">
-                          <p><span class="questionNum"><%=questionNumber%></span>/<span class="questionSum"><%=examInfo.questionSum%></span></p>
+                          <p><span class="questionNum"><%=questionNumber%></span>/<span class="questionSum"><%=questions.length%></span></p>
                         </div>
                       </div>
                   </div>
@@ -136,9 +133,9 @@ myApp.login.buttonLoading=function(cb){
             <div class="toolbar turning">
               <div class="toolbar-inner">
               <% if(questionNumber>1){ %>
-                  <a href="/app/exam?id=1&qNumber=<%=(parseInt(questionNumber)-1)%>" class="link"><i class="iconfont">&#xe639;</i></a>
+                  <a href="/app/exam?id=<%=examID%>&qNumber=<%=(parseInt(questionNumber)-1)%>" class="link"><i class="iconfont">&#xe639;</i></a>
               <% } if(questionNumber<questions.length){ %>    
-                  <a href="/app/exam?id=1&qNumber=<%=(parseInt(questionNumber)+1)%>" class="link"><i class="iconfont">&#xe636;</i></a>
+                  <a href="/app/exam?id=<%=examID%>&qNumber=<%=(parseInt(questionNumber)+1)%>" class="link"><i class="iconfont">&#xe636;</i></a>
               <% } if(questionNumber>=questions.length){ %>
                   <a href="/app/answersheet" class="icon-only link"><i class="iconfont">&#xe618;</i></a>
               <% } %>

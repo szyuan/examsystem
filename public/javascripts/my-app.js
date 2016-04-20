@@ -38,12 +38,6 @@ $$(document).on('pageInit', '.page[data-page="login"]', function (e) {
 
 });  
 $$(document).on('pageInit', '.page[data-page="exam"]', function (e) {
-    hljs.initHighlightingOnLoad();
-    $$('pre code').each(function(i, block) {
-        hljs.highlightBlock(block);
-    });
-    codeStyle();
-
     //实现倒计时
     clearInterval(myApp.countdownTimer);
     var oCountdown=$$('.countdown');

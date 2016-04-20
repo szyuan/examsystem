@@ -114,6 +114,7 @@
                     var iconfont='&#xe61c;';
                     var iconClass='examing';
                     var statusName='进行中';
+                    var examInfo=JSON.stringify(ce.examInfo);
                     if(currentExam[i].isFinished==0){
                       iconfont='&#xe603;';
                       iconClass='startSoon';
@@ -121,7 +122,7 @@
                     }
                 %>
                 <li class="row no-gutter ripple">
-                  <a href="/app/exam?id=520" class="link row" data-examID="<%=ce.examID%>" >
+                  <a href="/app/exam?id=<%=ce.examID%>&examInfo=<%=examInfo%>" class="link row" data-examID="<%=ce.examID%>">
                     <div class="col-25 <%=iconClass%>">
                       <strong><i class="icon iconfont"><%-iconfont%></i></strong>
                       <span><%=statusName%></span>
