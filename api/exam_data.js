@@ -50,6 +50,7 @@ exports.getExamData=function(id,examID,questionNumber,examInfo_basic,callback){
 	}
 	//-----------------数据格式化-----------------
 	function format(data_raw){
+		var json_raw=JSON.parse(data_raw);
 		var examModal={
 			// QuestionNumber:1,//当前题号
 			// examType:0,//类型【考试/历史】
@@ -176,6 +177,31 @@ exports.getExamData=function(id,examID,questionNumber,examInfo_basic,callback){
 			wrongID:[]
 		};
 		// examModal.examInfo.examID=examID;
+		examModal.questions=[];
+		for (var i = 0; i < json_raw.length; i++) {
+			examModal.questions.push({
+				id:1,//题目id
+				number:1,//在考试中的题号
+				type:0,//题目类型【0单选/1双选】
+				title: json_raw[i].questionContent,//题干
+				code:'',//若存在代码，则存放题目代码
+				answer:[//答案数组【[{答案id,答案内容},{},...]】
+					{
+						id:'xA',
+						content:'1给元素绑定样式'
+					},{
+						id:'xB',
+						content:'1显示隐藏'
+					},{
+						id:'xC',
+						content:'1var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
+					},{
+						id:'xD',
+						content:'1给元素绑定样式'
+					}
+				]
+			});
+		}
 
 		return examModal;
 	}
