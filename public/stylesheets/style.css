@@ -459,6 +459,7 @@ div[data-page=exam] .page-content{
 	font-size: inherit;
 	font-weight: normal;
 	margin-top:-0.5rem;
+	width:100%;
 }
 .question-type span{
 	border-bottom: 1px solid #eee;
@@ -469,7 +470,7 @@ div[data-page=exam] .page-content{
 }
 .question-content p{
 	margin:1rem 0;
-	text-indent:2rem;
+	/*text-indent:2rem;*/
 	font-size: inherit;
 }
 .question .code{

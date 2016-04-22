@@ -115,6 +115,7 @@
                     var iconClass='examing';
                     var statusName='进行中';
                     var examInfo=JSON.stringify(ce.examInfo);
+                    var examDate=new Date(ce.examInfo.startTime).toLocaleString();
                     if(currentExam[i].isFinished==0){
                       iconfont='&#xe603;';
                       iconClass='startSoon';
@@ -131,10 +132,10 @@
                       <h3><%=ce.examInfo.examName%></h3>
                       <p>
                         老师：<span class="teacherName"><%=ce.examInfo.createTeacher%></span>
-                        考试时间：<span class="examMainTime"><%=ce.examInfo.examTime%>分钟</span>
+                        考试时长：<span class="examMainTime"><%=ce.examInfo.examTime%>分钟</span>
                       </p>
                       <p>
-                        创建时间：<span class="examCreateDate"><%=ce.examInfo.startTime%></span>
+                        创建时间：<span class="examCreateDate"><%=examDate%></span>
                       </p>
                     </div>
                   </a>
@@ -164,7 +165,7 @@
                     var fe_title=fe.exam.examName||'-';
                     var fe_teacher=fe.exam.createTeacher||'-';
                     var fe_totalMinutes=fe.exam.examTime||999;
-                    var fe_createTime=fe.exam.startTime||'-/-/-';
+                    var fe_createTime=new Date(fe.exam.startTime).toLocaleString();
 
                     if(parseInt(fe_score)<60){
                       fe_class='scoreFail';

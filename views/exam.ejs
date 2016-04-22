@@ -42,7 +42,7 @@
                           <i class="iconfont small">&#xe617;</i>
                       </a>
                   </div>
-                  <div class="center countdown" id="countdown" data-startTime="Sun Apr 17 2016 16:00:00" data-totalMinutes="<%=examInfo.totalTime%>" >已结束</div>
+                  <div class="center countdown" id="countdown" data-startTime="Fri Apr 22 2016 15:20:00" data-totalMinutes="<%=examInfo.totalTime%>" >已结束</div>
                   <div class="right">
                       <a href="/app/answersheet" class="icon-only link">
                           <i class="iconfont">&#xe618;</i>
@@ -70,28 +70,16 @@
                     <h3 class="question-type"><span><%=typeName%></span></h3>
                     <div class="question-content">
                       <p><%=nowQuestion.title%></p>
-                      <% if(!(nowQuestion.code.trim()=='')){ %>
-                      <div class="code">
-                        <pre><code class="javascript">myApp.login=myApp.login||{};
-myApp.login.buttonLoading=function(cb){
-  var btn=$$('#loginBtn');
-  btn.click(function(event) {
-    btn.addClass('loginBtn-shrink');
-
-    cb&&cb();
-  });
-}</code></pre>
-                      </div>
-                      <% } %>
+                      <p><%=nowQuestion.content%></p>
                     </div>
-                    <a href="/javascript:;" class="button code-style-toggle"><i class="iconfont">&#xe626;</i></a>
+                    <!-- <a href="/javascript:;" class="button code-style-toggle"><i class="iconfont">&#xe626;</i></a> -->
 <!-- &#9;-Tab &#10;-换行 -->
                   </div>
     <script src="javascripts/prism.js"></script>
               </div>
               
-              <div class="list-block answerList">
-                <ul>
+              <div class="list-block answerList" data-number="<%=questionNumber%>">
+                <ul class="answerListUl"  data-number="<%=questionNumber%>">
                   <!-- Single radio input -->
                   <%
                     var aLen=nowQuestion.answer.length;
@@ -101,7 +89,7 @@ myApp.login.buttonLoading=function(cb){
                   <li>
                     <label class="label-radio item-content">
                       <!-- Checked by default -->
-                      <input type="radio" name="my-radio" value="Books" checked="checked">
+                      <input type="radio" name="my-radio" value="Books">
                       <div class="item-media">
                         <i class="icon icon-form-radio"></i>
                         <span class="optionCode"><%=nowQuestion.answer[ai].id%></span>
@@ -115,7 +103,7 @@ myApp.login.buttonLoading=function(cb){
                   <li>
                     <label class="label-checkbox item-content">
                       <!-- Checked by default -->
-                      <input type="checkbox" name="my-checkbox" value="Books" checked="checked">
+                      <input type="checkbox" name="my-checkbox" value="<%=nowQuestion.answer[ai].id%>">
                       <div class="item-media">
                         <i class="icon icon-form-checkbox"></i><span class="optionCode"><%=nowQuestion.answer[ai].id%></span>
                       </div>

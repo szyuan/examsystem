@@ -69,52 +69,6 @@ function getMainAll(stuId,classID,mainCallback){
 		console.log("@api/已完成考试数量:错误:" + e.message);
 	  	return '-';
 	});	
-
-
-	fData.finishedExamSum=12;
-	fData.finishedExamAvg=34;
-	fData.currentExam=[{
-		examID:1,
-		status_code:1,	//1-即将开始 2-正在进行  0-合格 -1-不合格
-		status:'即将开始',
-		title:'移动web开发期末小测验',
-		teacher:'周润发',
-		totalMinutes:88,
-		createTime:'2017-08-02 8:20'
-	},{
-		examID:2,
-		status_code:2,	//1-即将开始 2-正在进行  0-合格 -1-不合格
-		status:'正在进行',
-		title:'算法设计期末考试',
-		teacher:'刘德华',
-		totalMinutes:119,
-		createTime:'2017-08-03 9:30'
-	}];
-	fData.finishedExam=[{
-		examID:3,
-		status_code:0,	//1-即将开始 2-正在进行  0-合格 -1-不合格
-		status:'合格',
-		score:82,
-		title:'x移动web开发期末小测验',
-		teacher:'周润发',
-		totalMinutes:87,
-		createTime:'2016-07-01 7:10'
-	},{
-		examID:4,
-		status_code:1,	//1-即将开始 2-正在进行  0-合格 -1-不合格
-		status:'不合格',
-		score:59,
-		title:'y算法设计期末考试',
-		teacher:'刘德华',
-		totalMinutes:118,
-		createTime:'2016-07-13 8:20'
-	}];
-	fData.userInfo={
-		photoUrl:'images/avatar/u12880228.jpeg',
-		name:'陈铁柱'
-	};
-
-	// mainCallback(fData);
 }
 
 

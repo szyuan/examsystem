@@ -27,7 +27,7 @@
               <div class="navbar-inner">
                   <div class="left">
                     <a href="exam.html" class="icon-only link back">
-                          <i class="iconfont small">&#xe617;</i>
+                          <i class="iconfont small">&#xe639;</i>
                       </a>
                   </div>
                   <div class="center countdown">答题卡</div>
@@ -46,18 +46,25 @@
                   <div class="sheet-title card">
                     <h2><%=examInfo.title%></h2>
                   </div>
-
+                  <%
+                    var oTime=new Date(examInfo.startTime);
+                    var startHour=oTime.getHours();
+                    var startMinutes=oTime.getMinutes();
+                    var oEndTime=new Date(parseInt(examInfo.startTime)+parseInt(examInfo.totalTime)*60000);
+                    var endHour=oEndTime.getHours();
+                    var endMinutes=oEndTime.getMinutes();
+                  %>
                   <div class="exam-intro card">
                     <div class="exam-intro-content row no-gutter">
                       <ul class="col-50">
-                        <li>答题人：<span class="username-txt">陈惠霞</span></li>
+                        <li>答题人：<span class="username-txt"><%=basicInfo.stuInfo.Name%></span></li>
                         <li>创建老师：<span class="teachername-txt"><%=examInfo.teacher%></span></li>
-                        <li>开考时间：<span class="examstarttime-txt">8:30</span></li>
+                        <li>开考时间：<span class="examstarttime-txt"><%=startHour%>:<%=startMinutes%></span></li>
                       </ul>
                       <ul class="col-50">
-                        <li>班级：<span class="userclass-txt">12计科一班</span></li>
+                        <li>班级：<span class="userclass-txt"><%=basicInfo.className%></span></li>
                         <li>考试时间：<span class="examtimelimit-txt"><%=examInfo.totalTime%></span>分钟</li>
-                        <li>预计结束时间：<span class="examendtime-txt">10:00</span></li>
+                        <li>预计结束时间：<span class="examendtime-txt"><%=endHour%>:<%=endMinutes%></span></li>
                       </ul>
                     </div>
                     <div class="exam-progressbar">

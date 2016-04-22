@@ -60,146 +60,30 @@ exports.getExamData=function(id,examID,questionNumber,examInfo_basic,callback){
 				startTime:examInfo_basic.startTime||'0',
 				// startTime:'2016-04-15T10:10:00',
 				totalTime:examInfo_basic.examTime||'999',
-				teacher:examInfo_basic.examTime||'--'
+				teacher:examInfo_basic.createTeacher||'--'
 			},
-			questions:[
-				{
-					id:1,//题目id
-					number:1,//在考试中的题号
-					type:0,//题目类型【0单选/1双选】
-					title:'1以下关于mysql复制关系，描述错误的一项是?请给出这段代码的运行结果',//题干
-					code:'',//若存在代码，则存放题目代码
-					answer:[//答案数组【[{答案id,答案内容},{},...]】
-						{
-							id:'A',
-							content:'1给元素绑定样式'
-						},{
-							id:'B',
-							content:'1显示隐藏'
-						},{
-							id:'C',
-							content:'1var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
-						},{
-							id:'D',
-							content:'1给元素绑定样式'
-						}
-					]
-				},
-				{
-					id:2,
-					number:2,
-					type:1,
-					title:'2请给出这段代码的运行结果,复制关系关于mysql，描述错误的一项是?',
-					code:'',
-					answer:[
-						{
-							id:'A',
-							content:'2给元素绑定样式'
-						},{
-							id:'B',
-							content:'2显示隐藏'
-						},{
-							id:'C',
-							content:'2var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
-						},{
-							id:'D',
-							content:'2给元素绑定样式'
-						}
-					]
-				},
-				{
-					id:3,
-					number:3,
-					type:0,
-					title:'3描述错误的一项是,复制关系关于mysql，请给出这段代码的运行结果',
-					code:'',
-					answer:[
-						{
-							id:6,
-							content:'3给元素绑定样式'
-						},{
-							id:7,
-							content:'显示隐藏'
-						},{
-							id:8,
-							content:'var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
-						},{
-							id:9,
-							content:'给元素绑定样式'
-						}
-					]
-				},
-				{
-					id:4,
-					number:4,
-					type:0,
-					title:'4描述错误的一项是,复制关系关于mysql，请给出这段代码的运行结果',
-					code:'',
-					answer:[
-						{
-							id:6,
-							content:'3给元素绑定样式'
-						},{
-							id:7,
-							content:'显示隐藏'
-						},{
-							id:8,
-							content:'var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
-						},{
-							id:9,
-							content:'给元素绑定样式'
-						}
-					]
-				},
-				{
-					id:5,
-					number:5,
-					type:0,
-					title:'5描述错误的一项是,复制关系关于mysql，请给出这段代码的运行结果',
-					code:'',
-					answer:[
-						{
-							id:6,
-							content:'3给元素绑定样式'
-						},{
-							id:7,
-							content:'显示隐藏'
-						},{
-							id:8,
-							content:'var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
-						},{
-							id:9,
-							content:'给元素绑定样式'
-						}
-					]
-				}
-			],
 			wrongID:[]
 		};
 		// examModal.examInfo.examID=examID;
 		examModal.questions=[];
+		var alphabet=['A','B','C','D','E','F','G','H','I','J'];
 		for (var i = 0; i < json_raw.length; i++) {
+			var answerArray=json_raw[i].questionChoice.split(/[A-Z].\s/);
+			var answerJsonArray=[];
+			for(var ai=1,aLen=answerArray.length;ai<aLen;ai++){
+				answerJsonArray.push({
+					id:alphabet[ai-1],
+					content:answerArray[ai]
+				});
+				if(ai>=alphabet.length-1) break;
+			}
 			examModal.questions.push({
 				id:1,//题目id
 				number:1,//在考试中的题号
-				type:0,//题目类型【0单选/1双选】
+				type:parseInt(json_raw[i].questionTypeID)-1,//题目类型【0单选/1双选】
 				title: json_raw[i].questionContent,//题干
 				code:'',//若存在代码，则存放题目代码
-				answer:[//答案数组【[{答案id,答案内容},{},...]】
-					{
-						id:'xA',
-						content:'1给元素绑定样式'
-					},{
-						id:'xB',
-						content:'1显示隐藏'
-					},{
-						id:'xC',
-						content:'1var myDiv = document.getElementById ("statusCode");	myDiv.innerHTML = req.statusCode;'
-					},{
-						id:'xD',
-						content:'1给元素绑定样式'
-					}
-				]
+				answer:answerJsonArray
 			});
 		}
 

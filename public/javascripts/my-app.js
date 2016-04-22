@@ -66,8 +66,34 @@ $$(document).on('pageInit', '.page[data-page="exam"]', function (e) {
             }oCountdown.html(remainStr);
         },500);
     }
-
 }); 
+
+//保存答题记录
+myApp.answerLog={};
+//监听答题状态
+myApp.onPageAfterAnimation('exam', function(){
+    var oAnswerList=$$('.page-on-center').find('.answerListUl');
+    var aAnswerItem=oAnswerList.find('li');
+    $$('.toolbar a').on('click',function(e){
+        // alert($$(this).find('input').eq(0).prop('checked'));
+        var oAnswerList=$$('.page-on-center').find('.answerListUl');
+        var aAnswerItem=oAnswerList.find('li');
+        var option=$$(aAnswerItem).find('input').eq(0);
+        var qNumber=oAnswerList.data('number');
+        if(option.prop('type')=='checkbox'){
+            var checkedStr='';
+            for(var i=0;i<aAnswerItem.length;i++){
+                var theOption=aAnswerItem.eq(i).find('input').eq(0);
+                if(theOption.prop('checked')){
+                    checkedStr+=theOption.val();
+                }
+            }
+            console.log(checkedStr);
+        }else{
+        }
+        // console.log(option.prop('checked'));
+    });
+});
 
 
 

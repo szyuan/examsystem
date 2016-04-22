@@ -66,6 +66,7 @@ router.get('/app/exam', function(req, res, next) {
 	}
 });
 router.get('/app/answersheet', function(req, res, next) {
+	examDataCache.basicInfo=stuInfo;
 	res.render('answersheet',examDataCache);
 });
 router.get('/app/:pageName', function(req, res, next) {
