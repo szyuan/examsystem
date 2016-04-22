@@ -12,9 +12,9 @@
     <!-- Your app title -->
     <title>考试进行中</title>
     <!-- Path to Framework7 Library CSS, Material Theme -->
-    <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.material.min.css">
-    <link rel="stylesheet" href="stylesheets/colors.css">
-    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="/bower_components/Framework7/dist/css/framework7.material.min.css">
+    <link rel="stylesheet" href="/stylesheets/colors.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
   <body class="theme-white color">
     <div class="views">
@@ -27,13 +27,13 @@
               <div class="navbar-inner">
                   <div class="left">
                     <a href="exam.html" class="icon-only link back">
-                          <i class="iconfont small">&#xe639;</i>
+                          <i class="iconfont small">&#xe617;</i>
                       </a>
                   </div>
-                  <div class="center countdown">答题卡</div>
+                  <div class="center countdown">考试结果</div>
                   <div class="right">
                       <a href="#" class="icon-only countdown">
-                          <i class="iconfont">1:18:52</i>
+                          <i class="iconfont"></i>
                       </a>
                   </div>
               </div>
@@ -59,38 +59,25 @@
                       <ul class="col-50">
                         <li>答题人：<span class="username-txt"><%=basicInfo.stuInfo.Name%></span></li>
                         <li>创建老师：<span class="teachername-txt"><%=examInfo.teacher%></span></li>
-                        <li>开考时间：<span class="examstarttime-txt"><%=startHour%>:<%=startMinutes%></span></li>
                       </ul>
                       <ul class="col-50">
                         <li>班级：<span class="userclass-txt"><%=basicInfo.className%></span></li>
                         <li>考试时间：<span class="examtimelimit-txt"><%=examInfo.totalTime%></span>分钟</li>
-                        <li>预计结束时间：<span class="examendtime-txt"><%=endHour%>:<%=endMinutes%></span></li>
                       </ul>
-                    </div>
-                    <div class="exam-progressbar">
-                      <div class="current-progress"></div>
-                      <div class="exam-progress">
-                        <span class="progress-now"><%=questionNumber%></span>/<span class="progress-total"><%=questions.length%></span>
-                      </div>
                     </div>
                   </div>              
               </div>
-              <div class="list">
-                  <ol class="qid-list">
-                  <!-- <li class="qid-item"><strong class="qid qid-answered ripple">3</strong></li>
-                    <li class="qid-item"><strong class="qid qid-active ripple">4</strong></li>
-                    <li class="qid-item"><strong class="qid ripple">5</strong></li> -->
-                    <% for(var i=0;i<questions.length;i++){ %>
-                    <li class="qid-item"><a href="/app/exam?id=<%=examInfo.examID%>&qNumber=<%=i+1%>"><strong class="qid ripple"><%=i+1%></strong></a></li>
-                    <% } %>
-                  </ol>
+              <div class="list scoreContent success">
+                <h3><i class="iconfont">&#xe61d;</i></h3>
+                <p>合格</p>
+                <h1>62<span>分</span></h1>
               </div>
 
           </div>
 
           <div class="toolbar turning">
             <div class="toolbar-inner handin">
-                <a href="/app/judgeResult" class="link handin-btn"><i class="iconfont">&#xe62c;</i>确认并提交</a>
+                <a href="/app/main" class="link handin-btn"><i class="iconfont">&#xe62c;</i>返回首页</a>
             </div>
           </div>
 
@@ -100,8 +87,8 @@
 
     </div>
     <!-- Path to Framework7 Library JS-->
-    <script type="text/javascript" src="bower_components/Framework7/dist/js/framework7.min.js"></script>
-    <script src="javascripts/my-app.js"></script>
+    <script type="text/javascript" src="/bower_components/Framework7/dist/js/framework7.min.js"></script>
+    <script src="/javascripts/my-app.js"></script>
 
   </body>
 </html> 

@@ -44,7 +44,7 @@
                   </div>
                   <div class="center countdown" id="countdown" data-startTime="Fri Apr 22 2016 15:20:00" data-totalMinutes="<%=examInfo.totalTime%>" >已结束</div>
                   <div class="right">
-                      <a href="/app/answersheet" class="icon-only link">
+                      <a href="/app/answersheet" class="icon-only link saveAnswer">
                           <i class="iconfont">&#xe618;</i>
                       </a>
                   </div>
@@ -121,11 +121,11 @@
             <div class="toolbar turning">
               <div class="toolbar-inner">
               <% if(questionNumber>1){ %>
-                  <a href="/app/exam?id=<%=examID%>&qNumber=<%=(parseInt(questionNumber)-1)%>" class="link lastBtn"><i class="iconfont">&#xe639;</i></a>
+                  <a href="/app/exam?id=<%=examID%>&qNumber=<%=(parseInt(questionNumber)-1)%>" class="link lastBtn saveAnswer"><i class="iconfont">&#xe639;</i></a>
               <% } if(questionNumber<questions.length){ %>    
-                  <a href="/app/exam?id=<%=examID%>&qNumber=<%=(parseInt(questionNumber)+1)%>" class="link nextBtn"><i class="iconfont">&#xe636;</i></a>
+                  <a href="/app/exam?id=<%=examID%>&qNumber=<%=(parseInt(questionNumber)+1)%>" class="link nextBtn saveAnswer"><i class="iconfont">&#xe636;</i></a>
               <% } if(questionNumber>=questions.length){ %>
-                  <a href="/app/answersheet" class="icon-only link"><i class="iconfont">&#xe618;</i></a>
+                  <a href="/app/answersheet" class="icon-only link saveAnswer"><i class="iconfont">&#xe618;</i></a>
               <% } %>
               </div>
             </div>

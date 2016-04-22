@@ -69,6 +69,9 @@ router.get('/app/answersheet', function(req, res, next) {
 	examDataCache.basicInfo=stuInfo;
 	res.render('answersheet',examDataCache);
 });
+router.get('/app/judgeResult', function(req, res, next) {
+	res.render('judgeResult',examDataCache);
+});
 router.get('/app/:pageName', function(req, res, next) {
 	var pageName=req.params.pageName;
 	res.render(pageName);

@@ -71,8 +71,8 @@ $$(document).on('pageInit', '.page[data-page="exam"]', function (e) {
 //保存答题记录
 myApp.answerLog={};
 //监听答题状态
-myApp.onPageAfterAnimation('exam', function(){
-    var oAnswerList=$$('.page-on-center').find('.answerListUl');
+myApp.onPageBeforeAnimation('exam', function(page){
+    var oAnswerList=$$(page.container).find('.answerListUl');
     var aAnswerItem=oAnswerList.find('li');
     var option=$$(aAnswerItem).find('input').eq(0);
     var qNumber=oAnswerList.data('number');
@@ -81,30 +81,45 @@ myApp.onPageAfterAnimation('exam', function(){
     if(myApp.answerLog[qNumber+'']){
         var nowChecked=myApp.answerLog[qNumber+''];
         for(var nci=0;nci<aAnswerItem.length;nci++){
-            
-            // if(nowChecked.indexOf(aAnswerItem.eq(i).find('input').eq(0).val())){
-
-            // }
+            var nowOption=aAnswerItem.eq(nci).find('input').eq(0);
+            if(~nowChecked.indexOf(nowOption.val())){
+                nowOption.prop({checked: true});
+            }
         }
     }
 
-    $$('.toolbar a.nextBtn').on('click',function(e){
-        // alert($$(this).find('input').eq(0).prop('checked'));
-        
-
+    $$('.saveAnswer').on('click',function(e){
         for(var i=0;i<aAnswerItem.length;i++){
             var theOption=aAnswerItem.eq(i).find('input').eq(0);
             if(theOption.prop('checked')){
                 checkedStr+=theOption.val();
             }
         }
-        myApp.answerLog[qNumber+'']=checkedStr;
+        if(checkedStr){
+            myApp.answerLog[qNumber+'']=checkedStr;
+        }
         console.log(qNumber+':'+checkedStr);
         console.log(myApp.answerLog);
     });
 });
-
-
+//---------答题卡---------------
+myApp.onPageBeforeAnimation('answersheet', function(page){
+    // 设置答题卡题号样式
+    var aQItem=$$(page.container).find('.qid-item');
+    var qqi=0;
+    var aLen=0;
+    for(var qi in myApp.answerLog){
+        qqi=parseInt(qi.trim());
+        aQItem.eq(qqi-1).find('strong').eq(0).addClass('qid-answered');
+        aLen++;
+    }
+    aQItem.eq(qqi).find('strong').eq(0).removeClass('qid-answered').addClass('qid-active');
+    // 设置进度条
+    var currentPer=(aLen/parseInt($$('.progress-total').html()))*100;
+    $$('.progress-now').html(aLen);
+    $$('.current-progress').css({width:currentPer+'%'});
+    // console.log(currentPer);
+}); 
 
 /*--禁用滚动--*/
 // $$('body')[0].addEventListener('touchstart', function (ev) {

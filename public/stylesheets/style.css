@@ -627,3 +627,33 @@ div[data-page=answersheet] .page-content{
 .handin-btn .ripple-wave{
 	z-index: 1;
 }
+
+/*---------------judgeResult--------------*/
+.scoreContent h1{
+	text-align: center;
+	padding: 0rem 0 2rem 0;
+	font-size: 5rem;
+	margin: 0;
+}
+.scoreContent h1>span{
+	font-size: 1.2rem;
+}
+.scoreContent h3{
+	text-align: center;
+	padding: 1rem 0 0 0;
+	font-size: 1.2rem;
+	margin: 0;
+	font-weight: normal;
+}
+.scoreContent h3 i{
+	font-size: 5rem;
+}
+.scoreContent>p{
+	text-align: center;
+	font-size: 2rem;
+	margin: 0;
+	padding: 0;
+}
+.success h1,.success h3,.success p{
+	color: skyblue;
+}
