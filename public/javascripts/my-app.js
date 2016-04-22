@@ -74,24 +74,33 @@ myApp.answerLog={};
 myApp.onPageAfterAnimation('exam', function(){
     var oAnswerList=$$('.page-on-center').find('.answerListUl');
     var aAnswerItem=oAnswerList.find('li');
-    $$('.toolbar a').on('click',function(e){
-        // alert($$(this).find('input').eq(0).prop('checked'));
-        var oAnswerList=$$('.page-on-center').find('.answerListUl');
-        var aAnswerItem=oAnswerList.find('li');
-        var option=$$(aAnswerItem).find('input').eq(0);
-        var qNumber=oAnswerList.data('number');
-        if(option.prop('type')=='checkbox'){
-            var checkedStr='';
-            for(var i=0;i<aAnswerItem.length;i++){
-                var theOption=aAnswerItem.eq(i).find('input').eq(0);
-                if(theOption.prop('checked')){
-                    checkedStr+=theOption.val();
-                }
-            }
-            console.log(checkedStr);
-        }else{
+    var option=$$(aAnswerItem).find('input').eq(0);
+    var qNumber=oAnswerList.data('number');
+    var checkedStr='';
+
+    if(myApp.answerLog[qNumber+'']){
+        var nowChecked=myApp.answerLog[qNumber+''];
+        for(var nci=0;nci<aAnswerItem.length;nci++){
+            
+            // if(nowChecked.indexOf(aAnswerItem.eq(i).find('input').eq(0).val())){
+
+            // }
         }
-        // console.log(option.prop('checked'));
+    }
+
+    $$('.toolbar a.nextBtn').on('click',function(e){
+        // alert($$(this).find('input').eq(0).prop('checked'));
+        
+
+        for(var i=0;i<aAnswerItem.length;i++){
+            var theOption=aAnswerItem.eq(i).find('input').eq(0);
+            if(theOption.prop('checked')){
+                checkedStr+=theOption.val();
+            }
+        }
+        myApp.answerLog[qNumber+'']=checkedStr;
+        console.log(qNumber+':'+checkedStr);
+        console.log(myApp.answerLog);
     });
 });
 
