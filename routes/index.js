@@ -70,8 +70,16 @@ router.get('/app/answersheet', function(req, res, next) {
 	res.render('answersheet',examDataCache);
 });
 router.get('/app/judgeResult', function(req, res, next) {
-	
-	res.render('judgeResult',examDataCache);
+	//获取学生考试结果记录
+	var stuAnswerLogStr=req.query.answerLogStr;
+	var stuAnswerLog=JSON.parse(stuAnswerLogStr);
+	console.log('stuAnswerLogStr:'+stuAnswerLogStr);
+	console.log(stuAnswerLog);
+	//判断学生成绩
+	var judge=require('../api/judge_data.js');
+	judge.getAndSaveJudgeData(examDataCache,stuAnswerLog,function(judgeData){
+		res.render('judgeResult',judgeData);
+	});
 });
 router.get('/app/:pageName', function(req, res, next) {
 	var pageName=req.params.pageName;

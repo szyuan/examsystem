@@ -79,7 +79,7 @@ myApp.onPageBeforeAnimation('exam', function(page){
     var checkedStr='';
 
     if(myApp.answerLog[qNumber+'']){
-        var nowChecked=myApp.answerLog[qNumber+''];
+        var nowChecked=myApp.answerLog[qNumber+''][0];
         for(var nci=0;nci<aAnswerItem.length;nci++){
             var nowOption=aAnswerItem.eq(nci).find('input').eq(0);
             if(~nowChecked.indexOf(nowOption.val())){
@@ -91,13 +91,13 @@ myApp.onPageBeforeAnimation('exam', function(page){
     $$('.saveAnswer').on('click',function(e){
         for(var i=0;i<aAnswerItem.length;i++){
             var theOption=aAnswerItem.eq(i).find('input').eq(0);
-            var theOptionID=thOption.data('qid');
+            var theOptionID=oAnswerList.data('qid');
             if(theOption.prop('checked')){
                 checkedStr+=theOption.val();
             }
         }
         if(checkedStr){
-            myApp.answerLog[qNumber+'']=[checkedStr];
+            myApp.answerLog[qNumber+'']=[checkedStr,theOptionID];
         }
         console.log(qNumber+':'+checkedStr);
         console.log(myApp.answerLog);
@@ -106,7 +106,8 @@ myApp.onPageBeforeAnimation('exam', function(page){
 //---------答题卡---------------
 myApp.onPageBeforeAnimation('answersheet', function(page){
     // 设置答题卡题号样式
-    var aQItem=$$(page.container).find('.qid-item');
+    var oAnswersheet=$$(page.container);
+    var aQItem=oAnswersheet.find('.qid-item');
     var qqi=0;
     var aLen=0;
     for(var qi in myApp.answerLog){
@@ -119,7 +120,18 @@ myApp.onPageBeforeAnimation('answersheet', function(page){
     var currentPer=(aLen/parseInt($$('.progress-total').html()))*100;
     $$('.progress-now').html(aLen);
     $$('.current-progress').css({width:currentPer+'%'});
-    // console.log(currentPer);
+
+    //设置答题数据内容
+    // $$('#judgeBtn').on('click',function(e){
+    //     $$('#answerLogForm').submit();
+    // });
+    var oJudgeBtn=$$('#judgeBtn');
+    var oJudgeHref=oJudgeBtn.prop('href');
+    oJudgeHref+='?answerLogStr='+JSON.stringify(myApp.answerLog);
+    oJudgeBtn.prop('href', oJudgeHref);
+
+    console.log(oJudgeBtn.prop('href'));
+
 }); 
 
 /*--禁用滚动--*/
