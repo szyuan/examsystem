@@ -78,7 +78,7 @@ exports.getExamData=function(id,examID,questionNumber,examInfo_basic,callback){
 				if(ai>=alphabet.length-1) break;
 			}
 			examModal.questions.push({
-				id:1,//题目id
+				id:json_raw[i].questionID,//题目id
 				number:1,//在考试中的题号
 				type:parseInt(json_raw[i].questionTypeID)-1,//题目类型【0单选/1双选】
 				title: json_raw[i].questionContent,//题干

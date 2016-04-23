@@ -91,12 +91,13 @@ myApp.onPageBeforeAnimation('exam', function(page){
     $$('.saveAnswer').on('click',function(e){
         for(var i=0;i<aAnswerItem.length;i++){
             var theOption=aAnswerItem.eq(i).find('input').eq(0);
+            var theOptionID=thOption.data('qid');
             if(theOption.prop('checked')){
                 checkedStr+=theOption.val();
             }
         }
         if(checkedStr){
-            myApp.answerLog[qNumber+'']=checkedStr;
+            myApp.answerLog[qNumber+'']=[checkedStr];
         }
         console.log(qNumber+':'+checkedStr);
         console.log(myApp.answerLog);
