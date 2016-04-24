@@ -83,7 +83,8 @@ exports.getExamData=function(id,examID,questionNumber,examInfo_basic,callback){
 				type:parseInt(json_raw[i].questionTypeID)-1,//题目类型【0单选/1双选】
 				title: json_raw[i].questionContent,//题干
 				code:'',//若存在代码，则存放题目代码
-				answer:answerJsonArray
+				answer:answerJsonArray,
+				trueAnswer:json_raw[i].questionAnswer
 			});
 		}
 
