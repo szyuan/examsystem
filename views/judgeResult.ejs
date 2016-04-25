@@ -53,6 +53,16 @@
                     var oEndTime=new Date(parseInt(examInfo.startTime)+parseInt(examInfo.totalTime)*60000);
                     var endHour=oEndTime.getHours();
                     var endMinutes=oEndTime.getMinutes();
+
+                    var score=stuExamData.score;
+                    var resultClass='success';
+                    var resultIcon='&#xe61d;';
+                    var resultStr='通过';
+                    if(score<60){
+                      resultClass='fail';
+                      resultIcon='&#xe619;';
+                      resultStr='未通过';
+                    }
                   %>
                   <div class="exam-intro card">
                     <div class="exam-intro-content row no-gutter">
@@ -67,10 +77,10 @@
                     </div>
                   </div>              
               </div>
-              <div class="list scoreContent success">
-                <h3><i class="iconfont">&#xe61d;</i></h3>
-                <p>合格</p>
-                <h1>62<span>分</span></h1>
+              <div class="list scoreContent <%=resultClass%>">
+                <h3><i class="iconfont"><%-resultIcon%></i></h3>
+                <p><%=resultStr%></p>
+                <h1><%=score%><span>分</span></h1>
               </div>
 
           </div>

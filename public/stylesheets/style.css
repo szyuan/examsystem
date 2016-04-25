@@ -657,3 +657,6 @@ div[data-page=answersheet] .page-content{
 .success h1,.success h3,.success p{
 	color: skyblue;
 }
+.fail h1,.fail h3,.fail p{
+	color: lightcoral;
+}
