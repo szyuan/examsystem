@@ -660,3 +660,25 @@ div[data-page=answersheet] .page-content{
 .fail h1,.fail h3,.fail p{
 	color: lightcoral;
 }
+
+
+/*-----test------*/
+.list strong.qid-active {
+	/*position: relative;*/
+	color:#fff !important;
+	background: lightCoral !important;
+}
+.list li.qid-item{
+	position: relative;
+}
+.list .qid-item i{
+	color:skyblue;
+	position: absolute;
+	width: auto;
+	height: auto;
+	bottom: -10px;
+	right:20px;
+	font-weight: bold;
+	font-size: 20px;
+	font-family: '黑体';
+}

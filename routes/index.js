@@ -145,4 +145,14 @@ router.get('/func/logout',function(req,res,next){
 	res.redirect('/');
 });
 
+
+/*----test----*/
+router.get('/test/answersheet',function(req,res,next){
+	res.render('answersheet-test',{});
+	// res.send('answersheet');
+});
+
+
+
+
 module.exports = router;

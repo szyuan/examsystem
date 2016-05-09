@@ -77,6 +77,7 @@ function getJudgeData(examData,answerData){
 			  	questions.length*100
 			);
 	examResult.score=score;
+	examResult.score=100;
 
 	return examResult;
 }
@@ -87,8 +88,7 @@ function saveJudgeData(judgeData,cb){
 		host:'121.42.179.184',
 		port:8080,
 		path:'/exam/insertExamResult',
-		method:'POST',
-		data:
+		method:'POST'
 	}
 
 	cb();
