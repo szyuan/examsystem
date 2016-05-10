@@ -19,7 +19,23 @@ $(function(){
 			console.log(optionItem);
 		});
 
+
+		/*------添加考试------*/
+		$('#createBtn').on('click',function(){
+
+			if(confirm('确定要创建这场考试吗？')){
+				jQuery.get('/test/newExam', {}, function(data, textStatus, xhr) {
+					console.info('考试创建成功！');
+				});
+			}	
+
+		});
+
+
+
 	})();
+
+
 
 
 });

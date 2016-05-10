@@ -682,3 +682,18 @@ div[data-page=answersheet] .page-content{
 	font-size: 20px;
 	font-family: '黑体';
 }
+
+
+
+
+/*-----test-------*/
+#hideExam{
+	display: none;
+	opacity: 0;
+	transition:1s;
+}
+.slideDown{
+	display: block !important;
+	height: auto !important;
+	opacity: 1 !important;
+}

@@ -37,6 +37,18 @@ $$(document).on('pageInit', '.page[data-page="login"]', function (e) {
     });
 
 });  
+$$(document).on('pageInit', '.page[data-page="main"]', function (e) {
+    
+    var socket=io.connect('http://localhost:3031');
+    socket.on('news',function(data){
+      console.log(data);
+    });
+    
+    socket.on('newExam',function(data){
+        alert('新考试');
+    });
+
+});  
 $$(document).on('pageInit', '.page[data-page="exam"]', function (e) {
     //实现倒计时
     clearInterval(myApp.countdownTimer);

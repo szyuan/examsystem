@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 var stuInfo={};//basicInfo
+var io=require('socket.io').listen(3031);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -147,9 +148,33 @@ router.get('/func/logout',function(req,res,next){
 
 
 /*----test----*/
+var _socket=null;
+io.sockets.on('connection',function(socket){
+  socket.emit('news',{hello:'world'});
+
+  // socket.on('otherEvent',function(data){
+  //   console.log('data');
+  // });
+
+  // socket.on('newExam',function(data){
+  //   console.log('data');
+  // }); 
+  _socket=socket;
+  
+});
+
 router.get('/test/answersheet',function(req,res,next){
 	res.render('answersheet-test',{});
+});
+router.get('/test/main',function(req,res,next){
+	res.render('main-test',{});
 	// res.send('answersheet');
+});
+router.get('/test/newExam',function(req,res,next){
+	// res.render('main-test',{});
+	// res.send('answersheet');
+	_socket.emit('newExam',{hello:'world'});
+	res.send('ok');
 });
 
 

@@ -31,18 +31,11 @@
         <div class="pages">
         <!-- --------------------- -->
           <div data-page="main" class="page">
-            <%
-              var finishedExamSum=finishedExamSum||'-';
-              var finishedExamAvg=finishedExamAvg||'-';
-              var currentExam=currentExam||[];
-              var finishedExam=finishedExam||[];
-              var basicInfo=basicInfo||{};
-            %>
             <div class="panel-overlay"></div>
             <div class="panel panel-right panel-cover">
                 <div class="panel-head">
                   <div class="avatar"><img src="/images/avatar/u12880228.jpeg" alt=""></div>
-                  <h4 class="nickname"><%=basicInfo.stuInfo.Name%></h4>
+                  <h4 class="nickname">陈大力</h4>
                 </div>
                 <ul class="panel-list">
                   <li><a href="#" class="button">个人信息</a></li>
@@ -70,7 +63,7 @@
 
               <div class="content-block">
 
-                  <form class="card search-bar" action="http://m.baidu.com.cn/s">
+                  <form class="card search-bar" action="http://m.baidu.com.cn/s?wd=">
                       <div class="row no-gutter">
                         <div class="col-15">
                           <a href="#" class="searchbar-btn button">
@@ -78,7 +71,7 @@
                           </a>
                         </div>
                         <div class="col-85">
-                          <input name="wd" type="search" placeholder="Search">
+                          <input type="search" placeholder="Search">
                         </div>
                       </div>
                   </form>
@@ -86,11 +79,11 @@
                   <div class="main-stat row card">
                     <div class="col-50">
                       <span>已参加考试</span>
-                      <strong class="pink" id="examedNum"><%=finishedExamSum%></strong>
+                      <strong class="pink" id="examedNum">4</strong>
                     </div>
                     <div class="col-50">
                       <span>平均分</span>
-                      <strong class="pink" id="gpa"><%=finishedExamAvg%></strong>
+                      <strong class="pink" id="gpa">72</strong>
                     </div>
                   </div>
               </div>
@@ -98,99 +91,121 @@
               <div class="content-block"><h2>当前考试</h2></div>
               <ul class="currentExamList examList list">
               <!-- 当前没有考试 -->
-                <% if(currentExam.length<=0){ %>
-                <li class="row no-gutter ripple no-data">
-                  <div class="col-25 <%=iconClass%>">
-                      <strong><i class="icon iconfont">&#xe61e;</i></strong>
-                    </div>
-                    <div class="col-75">
-                      <h3>当前没有考试</h3>
-                    </div>
-                </li>
+  
                 <!-- 当前存在考试 -->
-                <%}else{
-                  for(var i=0,len=currentExam.length;i<len;i++){ 
-                    var ce=currentExam[i];
-                    var iconfont='&#xe61c;';
-                    var iconClass='examing';
-                    var statusName='进行中';
-                    var examInfo=JSON.stringify(ce.examInfo);
-                    var examDate=new Date(ce.examInfo.startTime).toLocaleString();
-                    if(currentExam[i].isFinished==0){
-                      iconfont='&#xe603;';
-                      iconClass='startSoon';
-                      statusName='即将开始';
-                    }
-                %>
-                <li class="row no-gutter ripple">
-                  <a href="/app/exam?id=<%=ce.examID%>&examInfo=<%=examInfo%>" class="link row" data-examID="<%=ce.examID%>">
-                    <div class="col-25 <%=iconClass%>">
-                      <strong><i class="icon iconfont"><%-iconfont%></i></strong>
-                      <span><%=statusName%></span>
+                <li class="row no-gutter ripple" id="hideExam" style="">
+                  <a href="#" class="link row" data-examID="1">
+                    <div class="col-25 startSoon">
+                      <strong><i class="icon iconfont"></i></strong>
+                      <span>即将开始</span>
                     </div>
                     <div class="col-75">
-                      <h3><%=ce.examInfo.examName%></h3>
+                      <h3>A</h3>
                       <p>
-                        老师：<span class="teacherName"><%=ce.examInfo.createTeacher%></span>
-                        考试时长：<span class="examMainTime"><%=ce.examInfo.examTime%>分钟</span>
+                        老师：<span class="teacherName">张老师</span>
+                        考试时长：<span class="examMainTime">100分钟</span>
                       </p>
                       <p>
-                        创建时间：<span class="examCreateDate"><%=examDate%></span>
+                        创建时间：<span class="examCreateDate">1分钟前</span>
                       </p>
                     </div>
                   </a>
                 </li>
-                <% }} %>
+
+                <li class="row no-gutter ripple">
+                  <a href="#" class="link row" data-examID="1">
+                    <div class="col-25 startSoon">
+                      <strong><i class="icon iconfont"></i></strong>
+                      <span>即将开始</span>
+                    </div>
+                    <div class="col-75">
+                      <h3>软件项目管理</h3>
+                      <p>
+                        老师：<span class="teacherName">秦高德</span>
+                        考试时长：<span class="examMainTime">50分钟</span>
+                      </p>
+                      <p>
+                        创建时间：<span class="examCreateDate">2016-04-20 18:47:11</span>
+                      </p>
+                    </div>
+                  </a>
+                </li>
               </ul>
               
               <div class="content-block historyExam"><h2>已完成考试</h2></div>
               <ul class="historyExamList examList list">
-                <% if(finishedExam.length<=0){ %>
-                <li class="row no-gutter ripple no-data">
-                  <div class="col-25 <%=iconClass%>">
-                      <strong><i class="icon iconfont">&#xe61e;</i></strong>
-                    </div>
-                    <div class="col-75">
-                      <h3>没有已完成考试</h3>
-                    </div>
-                </li>
-                <% }else{
-                for(var i=0,len=finishedExam.length;i<len;i++){ 
-                    var fe=finishedExam[i];
-                    var fe_class='scorePass';
-                    var fe_status='通过';
-                    
-                    var fe_examID=fe.stuExamInfo.examID||'';
-                    var fe_score=fe.stuExamInfo.score||0;
-                    var fe_title=fe.exam.examName||'-';
-                    var fe_teacher=fe.exam.createTeacher||'-';
-                    var fe_totalMinutes=fe.exam.examTime||999;
-                    var fe_createTime=new Date(fe.exam.startTime).toLocaleString();
-
-                    if(parseInt(fe_score)<60){
-                      fe_class='scoreFail';
-                      fe_status='未合格';
-                    }
-                %>
                 <li class="row no-gutter ripple">
-                  <a href="/test/answersheet" class="link row" data-examID="<%=fe_examID%>" >
-                    <div class="col-25 <%=fe_class%>">
-                      <strong><i class="iconfont"><%=fe_score%></i></strong>
-                      <span><%=fe_status%></span>
+                  <a href="/test/answersheet" class="link row" data-examid="150">
+                    <div class="col-25 scorePass">
+                      <strong><i class="iconfont" style="font-size:1.7rem;">100</i></strong>
+                      <span>通过</span>
                     </div>
                     <div class="col-75">
-                      <h3><%=fe_title%></h3>
+                      <h3>数据结构与算法</h3>
                       <p>
-                        老师：<span class="teacherName"><%=fe_teacher%></span>
-                        考试时长：<span class="examMainTime"><%=fe_totalMinutes%>分钟</span>
+                        老师：<span class="teacherName">秦高德</span>
+                        考试时长：<span class="examMainTime">50分钟</span>
                       </p>
                       <p>
-                        开考时间：<span class="examCreateDate"><%=fe_createTime%></span>
+                        开考时间：<span class="examCreateDate">2016-04-20 18:47:11</span>
+                      </p>
+                    </div>
+                  </a>
+                </li>
+                <li class="row no-gutter ripple">
+                <a href="/test/answersheet" class="link row" data-examid="1">
+                    <div class="col-25 scoreFail">
+                      <strong><i class="iconfont">33</i></strong>
+                      <span>未合格</span>
+                    </div>
+                    <div class="col-75">
+                      <h3>考试0</h3>
+                      <p>
+                        老师：<span class="teacherName">秦高德</span>
+                        考试时长：<span class="examMainTime">90分钟</span>
+                      </p>
+                      <p>
+                        开考时间：<span class="examCreateDate">2016-04-20 18:47:11</span>
                       </p>
                     </div>
                   </a>
                 </li> 
-                <% } } %>
+                <li class="row no-gutter ripple">
+                  <a href="/test/answersheet" class="link row" data-examid="2">
+                    <div class="col-25 scoreFail">
+                      <strong><i class="iconfont">31</i></strong>
+                      <span>未合格</span>
+                    </div>
+                    <div class="col-75">
+                      <h3>考试1</h3>
+                      <p>
+                        老师：<span class="teacherName">秦高德</span>
+                        考试时长：<span class="examMainTime">90分钟</span>
+                      </p>
+                      <p>
+                        开考时间：<span class="examCreateDate">2016-04-20 18:47:11</span>
+                      </p>
+                    </div>
+                  </a>
+                </li>
+                <li class="row no-gutter ripple">
+                  <a href="/test/answersheet" class="link row" data-examid="150">
+                    <div class="col-25 scorePass">
+                      <strong><i class="iconfont">98</i></strong>
+                      <span>通过</span>
+                    </div>
+                    <div class="col-75">
+                      <h3>考试149</h3>
+                      <p>
+                        老师：<span class="teacherName">秦高德</span>
+                        考试时长：<span class="examMainTime">90分钟</span>
+                      </p>
+                      <p>
+                        开考时间：<span class="examCreateDate">2016-04-20 18:47:11</span>
+                      </p>
+                    </div>
+                  </a>
+                </li>
               </ul>
 
             </div>
@@ -204,7 +219,21 @@
     <!-- Path to Framework7 Library JS-->
     <script type="text/javascript" src="/bower_components/Framework7/dist/js/framework7.min.js"></script>
     <!-- Path to your app js-->
+    <script src="/javascripts/socket.io.js"></script>
     <script type="text/javascript" src="/javascripts/my-app.js"></script>
+    <script>
+      var socket=io.connect('http://localhost:3031');
+        socket.on('news',function(data){
+          console.log(data);
+        });
+        
+        socket.on('newExam',function(data){
+            // alert('新考试');
+            myApp.alert('有新的考试!',function(){
+              $$('#hideExam').addClass('slideDown');
+            });
 
+        });
+    </script>
   </body>
 </html> 
