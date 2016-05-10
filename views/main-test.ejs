@@ -30,7 +30,7 @@
         <!-- Pages container, because we use fixed navbar and toolbar, it has additional appropriate classes-->
         <div class="pages">
         <!-- --------------------- -->
-          <div data-page="main" class="page">
+          <div data-page="main-test" class="page">
             <div class="panel-overlay"></div>
             <div class="panel panel-right panel-cover">
                 <div class="panel-head">
@@ -222,7 +222,7 @@
     <script src="/javascripts/socket.io.js"></script>
     <script type="text/javascript" src="/javascripts/my-app.js"></script>
     <script>
-      var socket=io.connect('http://localhost:3031');
+      var socket=io.connect('http://127.0.0.1:3031');
         socket.on('news',function(data){
           console.log(data);
         });

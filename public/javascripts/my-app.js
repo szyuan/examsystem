@@ -39,14 +39,30 @@ $$(document).on('pageInit', '.page[data-page="login"]', function (e) {
 });  
 $$(document).on('pageInit', '.page[data-page="main"]', function (e) {
     
-    var socket=io.connect('http://localhost:3031');
+    var socket=io.connect('http://127.0.0.1:3031');
     socket.on('news',function(data){
       console.log(data);
     });
-    
+
     socket.on('newExam',function(data){
         alert('新考试');
     });
+
+});  
+$$(document).on('pageInit', '.page[data-page="main-test"]', function (e) {
+    
+    var socket=io.connect('http://127.0.0.1:3031');
+        socket.on('news',function(data){
+          console.log(data);
+        });
+        
+        socket.on('newExam',function(data){
+            // alert('新考试');
+            myApp.alert('有新的考试!',function(){
+              $$('#hideExam').addClass('slideDown');
+            });
+
+        });
 
 });  
 $$(document).on('pageInit', '.page[data-page="exam"]', function (e) {
